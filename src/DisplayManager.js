@@ -101,6 +101,10 @@ function repaintEntryCanvas(entry, textSize){
     entry.badges.forEach((badge, i) => {
         ctx.drawImage(symbols[badge].icon, drawX, drawY, textSize, textSize);
         drawX += textSize;
+        if (drawX >= canvas.width - textSize){
+            drawX = 0;
+            drawY += textSize;
+        }
     });
 
 }
