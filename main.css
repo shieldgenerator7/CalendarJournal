@@ -36,3 +36,14 @@ p {
     width: 100%;
     height: 25px;
 }
+
+.symbolButton{
+    border: 0px;
+    background-color: transparent;
+    border-radius: 20px;
+}
+
+.symbolButton:hover{
+    border: 10px;
+    background-color: #93E4FF;
+}
