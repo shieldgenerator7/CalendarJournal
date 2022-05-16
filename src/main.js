@@ -29,11 +29,18 @@ function txtTimeChanged(){
 
 //TODO: perhaps move this to another script?
 function btnSymbolClicked(symbol){
-    if (badgeSymbols.includes(symbol)){
-        entry.addBadge(symbol);
+    if (!record){
+        if (badgeSymbols.includes(symbol)){
+            entry.addBadge(symbol);
+        }
+        if (pleasureSymbols.includes(symbol)){
+            entry.addPleasure(symbol);
+        }
     }
-    if (pleasureSymbols.includes(symbol)){
-        entry.addPleasure(symbol);
+    else{
+        record.addPart(`[${symbol}]`);
+        record.addPart("");
+        updateEntryFields(entry);
     }
     repaintEntryCanvas(entry);
 }
@@ -44,8 +51,15 @@ function txtRecordChanged(){
         record = entry.addNewRecord();
     }
     record.addPart($("txtRecord").value);
+    updateEntryFields(entry);
     repaintEntryCanvas(entry);
 }
+//TODO: perhaps remove this function and the HTML element that uses it
+function btnRecordAddClicked(){
+    record = undefined;
+    updateEntryFields(entry);
+}
+
 
 //TODO: move this to Utility script
 Math.clamp = function(amount, min, max){
