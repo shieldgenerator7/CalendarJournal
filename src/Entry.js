@@ -21,13 +21,11 @@ class Entry{
     }
 
     addNewRecord(){
-        let record = {
-            body: [],
-        }
+        let record = new Record();
         this.records.push(record);
     }
 
     cleanRecords(){
-        this.records = this.records.filter(record=>record?.body?.length > 0);
+        this.records = this.records.filter(record=>record?.isValid());
     }
 }
