@@ -6,7 +6,10 @@ function $(elementId) {
 
 function updateSymbolBank(){
     let symbolBank = $("divBankSymbol");
-    let buttonString = symbolNames
+    let symbolNameList = (searchResults.query?.trim())
+        ? searchResults.symbolNames
+        : symbolNames;
+    let buttonString = symbolNameList
         .map(name => createSymbolButtonString(name))
         .join("");
     symbolBank.innerHTML = buttonString;

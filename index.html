@@ -6,7 +6,11 @@
     <div class="panel">
         <!-- Side Bar -->
         <div class="sidebar">
-            <input id="txtSearchSymbols" class="txtSearchSymbols" type="text"></input>
+            <input id="txtSearchSymbols" class="txtSearchSymbols" type="text"
+                onchange="txtSearchSymbolsChanged();"
+                oninput="txtSearchSymbolsChanged();"
+                onpaste="txtSearchSymbolsChanged();"
+            ></input>
             <div id="divBankSymbol" class="divBank">
                 <button id="btnSymbol_fruit" class="symbolButton"
                     onclick="console.log('fruit clicked')"
@@ -22,6 +26,7 @@
     </div>
 </body>
 <script src="src/SymbolBank.js"></script>
+<script src="src/SearchSymbol.js"></script>
 <script src="src/DisplayManager.js"></script>
 <script src="src/main.js"></script>
 <!-- <script src="src/Enums.js"></script>

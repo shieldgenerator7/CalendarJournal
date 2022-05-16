@@ -56,5 +56,5 @@ p {
 .divBank{
   display: flex;
   flex-wrap: wrap;
-  max-width: 220px;
+  width: 220px;
 }
