@@ -73,6 +73,7 @@ class Entry{
     addNewRecord(){
         let record = new Record();
         this.records.push(record);
+        return record;
     }
 
     cleanRecords(){

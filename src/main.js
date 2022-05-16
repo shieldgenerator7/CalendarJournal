@@ -2,11 +2,13 @@
 
 //TODO: move this to its own place (it doesnt belong here, i dont think)
 let entry;
+let record;
 
 function initCalendarJournal(){
     initSymbols();
     updateSymbolBank();
     entry ??= new Entry();
+    record = undefined;
     repaintEntryCanvas(entry);
 }
 initCalendarJournal();
@@ -35,6 +37,14 @@ function btnSymbolClicked(symbol){
     repaintEntryCanvas(entry);
 }
 
+//TODO: perhaps remove this function and the HTML element that uses it
+function txtRecordChanged(){
+    if (!record){
+        record = entry.addNewRecord();
+    }
+    record.addPart($("txtRecord").value);
+    repaintEntryCanvas(entry);
+}
 
 //TODO: move this to Utility script
 Math.clamp = function(amount, min, max){

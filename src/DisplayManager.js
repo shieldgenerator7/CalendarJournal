@@ -108,10 +108,17 @@ function repaintEntryCanvas(entry, textSize){
         }
     });
     //Draw pleasures
-    drawX = canvas.width-textSize;
-    drawY = 0;
+    let drawX2 = canvas.width-textSize;
+    let drawY2 = 0;
     entry.pleasures.forEach((pleasure, i) => {
-        ctx.drawImage(symbols[pleasure].icon, drawX, drawY, textSize, textSize);
+        ctx.drawImage(symbols[pleasure].icon, drawX2, drawY2, textSize, textSize);
+        drawY2 += textSize;
+    });
+    //Draw records
+    drawX = 0;
+    drawY += textSize*2;
+    entry.records.forEach((record, i) => {
+        ctx.fillText(record.body[0], drawX, drawY);
         drawY += textSize;
     });
 
