@@ -57,6 +57,10 @@ class Entry{
         }
     }
 
+    addBadge(symbols){
+        this.badges.push(symbols);
+    }
+
     addNewRecord(){
         let record = new Record();
         this.records.push(record);

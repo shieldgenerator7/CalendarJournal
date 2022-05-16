@@ -19,7 +19,10 @@ function createSymbolButtonString(symbolName){
     return ""+
         `<button id="btnSymbol_${symbolName}" class="symbolButton"
             title="${symbolName}"
-            onclick="console.log('${symbolName} clicked')"
+            onclick="
+                console.log('${symbolName} clicked');
+                btnSymbolClicked('${symbolName}');
+            "
         >
             <img src="src/Assets/Sprites/${symbolName}.png" />
         </button>`;
@@ -92,4 +95,12 @@ function repaintEntryCanvas(entry, textSize){
         entry.bed.side == AFTER
     );
     ctx.stroke();
+    //Draw badges
+    let drawX = 0;
+    let drawY = textSize + textSize/2;
+    entry.badges.forEach((badge, i) => {
+        ctx.drawImage(symbols[badge].icon, drawX, drawY, textSize, textSize);
+        drawX += textSize;
+    });
+
 }

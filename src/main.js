@@ -24,6 +24,13 @@ function txtTimeChanged(){
     repaintEntryCanvas(entry);
 }
 
+//TODO: perhaps move this to another script?
+function btnSymbolClicked(symbol){
+    entry.addBadge(symbol);
+    repaintEntryCanvas(entry);
+}
+
+
 //TODO: move this to Utility script
 Math.clamp = function(amount, min, max){
     return Math.max(min, Math.min(amount, max));
