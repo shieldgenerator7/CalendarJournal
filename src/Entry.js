@@ -20,6 +20,43 @@ class Entry{
         this.records = [];
     }
 
+    setWakeTime(timeString){
+        let split = timeString.split(":");
+        let hour = split[0]*1;
+        let minute = split[1]*1;
+        hour = Math.clamp(hour,0,24);
+        minute = Math.clamp(minute,0,59);
+        if (hour == 24){
+            hour = 0;
+        }
+        if (minute >= 45){
+            this.wake.time = hour+1;
+            this.wake.side = BEFORE;
+        }
+        else{
+            this.wake.time = hour;
+            this.wake.side = AFTER;
+        }
+    }
+    setBedTime(timeString){
+        let split = timeString.split(":");
+        let hour = split[0]*1;
+        let minute = split[1]*1;
+        hour = Math.clamp(hour,0,24);
+        minute = Math.clamp(minute,0,59);
+        if (hour == 24){
+            hour = 0;
+        }
+        if (minute <= 15){
+            this.bed.time = hour;
+            this.bed.side = AFTER;
+        }
+        else{
+            this.bed.time = hour+1;
+            this.bed.side = BEFORE;
+        }
+    }
+
     addNewRecord(){
         let record = new Record();
         this.records.push(record);

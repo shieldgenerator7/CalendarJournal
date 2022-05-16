@@ -16,3 +16,15 @@ function txtSearchSymbolsChanged(){
     filterSymbolNames($('txtSearchSymbols').value);
     updateSymbolBank();
 }
+
+//TODO: perhaps move this to another script?
+function txtTimeChanged(){
+    entry.setWakeTime($('txtTimeWake').value);
+    entry.setBedTime($('txtTimeBed').value);
+    repaintEntryCanvas(entry);
+}
+
+//TODO: move this to Utility script
+Math.clamp = function(amount, min, max){
+    return Math.max(min, Math.min(amount, max));
+}

@@ -32,6 +32,11 @@ p {
     padding: 10px;
 }
 
+.txtTime{
+    width: 105px;
+    height: 25px;
+}
+
 .txtSearchSymbols{
     width: 100%;
     height: 25px;

@@ -6,6 +6,17 @@
     <div class="panel">
         <!-- Side Bar -->
         <div class="sidebar">
+            <input id="txtTimeWake" class="txtTime" type="text"
+                onchange="txtTimeChanged();"
+                oninput="txtTimeChanged();"
+                onpaste="txtTimeChanged();"
+            ></input>
+            <input id="txtTimeBed" class="txtTime" type="text"
+                onchange="txtTimeChanged();"
+                oninput="txtTimeChanged();"
+                onpaste="txtTimeChanged();"
+            ></input>
+            <br>
             <input id="txtSearchSymbols" class="txtSearchSymbols" type="text"
                 onchange="txtSearchSymbolsChanged();"
                 oninput="txtSearchSymbolsChanged();"
