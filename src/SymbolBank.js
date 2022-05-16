@@ -20,6 +20,25 @@ const symbolNames = [
     "porn",
 ];
 
+let badgeSymbols = [
+    "fruit",
+    "language",
+    "call",
+    "earlyWake",
+    "earlyBed",
+    "teeth",
+    "antifungal",
+];
+let pleasureSymbols = [    
+    "youtube",
+    "twitter",
+    "facebook",
+    "chocolate",
+    "icecream",
+    "lounge",
+    "porn",
+];
+
 let symbols = [];//dictionary mapped from symbol name to symbol object
 
 function initSymbols(){
