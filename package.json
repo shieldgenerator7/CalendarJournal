@@ -1,0 +1,13 @@
+{
+  "name": "CalendarJournal",
+  "version": "1.0.0",
+  "description": "A daily journal that uses symbols on a calendar",
+  "main": "index.html",
+  "scripts": {},
+  "author": "shieldgenerator7",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "http-server": "^0.11.1"
+  }
+}
