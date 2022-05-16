@@ -11,6 +11,13 @@ const symbolNames = [
     "earlyBed",
     "teeth",
     "antifungal",
+    "youtube",
+    "twitter",
+    "facebook",
+    "chocolate",
+    "icecream",
+    "lounge",
+    "porn",
 ];
 
 let symbols = [];//dictionary mapped from symbol name to symbol object
