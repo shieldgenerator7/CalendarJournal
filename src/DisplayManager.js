@@ -98,13 +98,21 @@ function repaintEntryCanvas(entry, textSize){
     //Draw badges
     let drawX = 0;
     let drawY = textSize + textSize/2;
+    let badgeLimitX = canvas.width-textSize;
     entry.badges.forEach((badge, i) => {
         ctx.drawImage(symbols[badge].icon, drawX, drawY, textSize, textSize);
         drawX += textSize;
-        if (drawX >= canvas.width - textSize){
+        if (drawX >= badgeLimitX - textSize){
             drawX = 0;
             drawY += textSize;
         }
+    });
+    //Draw pleasures
+    drawX = canvas.width-textSize;
+    drawY = 0;
+    entry.pleasures.forEach((pleasure, i) => {
+        ctx.drawImage(symbols[pleasure].icon, drawX, drawY, textSize, textSize);
+        drawY += textSize;
     });
 
 }

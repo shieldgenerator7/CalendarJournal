@@ -27,6 +27,7 @@ function txtTimeChanged(){
 //TODO: perhaps move this to another script?
 function btnSymbolClicked(symbol){
     entry.addBadge(symbol);
+    entry.addPleasure(symbol);
     repaintEntryCanvas(entry);
 }
 

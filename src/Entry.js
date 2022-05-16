@@ -63,6 +63,12 @@ class Entry{
         }
         this.badges.push(symbol);
     }
+    addPleasure(symbol){
+        if (this.pleasures.includes(symbol)){
+            this.pleasures.splice(this.pleasures.indexOf(symbol),1);
+        }
+        this.pleasures.push(symbol);
+    }
 
     addNewRecord(){
         let record = new Record();
