@@ -4,6 +4,13 @@ const IMAGE_DIR = "src/Assets/Images/";
 const SPRITE_DIR = "src/Assets/Sprites/";
 
 const symbolNames = [
+    "fruit",
+    "language",
+    "call",
+    "earlyWake",
+    "earlyBed",
+    "teeth",
+    "antifungal",
 ];
 
 let symbols = [];//dictionary mapped from symbol name to symbol object
@@ -32,3 +39,6 @@ function createSymbol(symbolName, fileName){
     //Return symbol
     return symbol;
 }
+
+//TODO: move this call to the main controller script
+initSymbols();
