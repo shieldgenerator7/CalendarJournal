@@ -40,10 +40,21 @@ p {
 .symbolButton{
     border: 0px;
     background-color: transparent;
-    border-radius: 20px;
+    border-radius: 10px;
+    margin: 5px;
 }
 
 .symbolButton:hover{
     border: 10px;
     background-color: #93E4FF;
+}
+
+.symbolButton img{
+    width: 50px;
+}
+
+.divBank{
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 220px;
 }
