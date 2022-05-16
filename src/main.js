@@ -9,6 +9,7 @@ function initCalendarJournal(){
     updateSymbolBank();
     entry ??= new Entry();
     record = undefined;
+    updateEntryFields(entry);
     repaintEntryCanvas(entry);
 }
 initCalendarJournal();

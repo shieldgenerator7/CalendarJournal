@@ -4,6 +4,12 @@ function $(elementId) {
     return document.getElementById(elementId);
 }
 
+function updateEntryFields(entry){
+    $("txtTimeWake").value = entry.wake.time+":00";
+    $("txtTimeBed").value = entry.bed.time+":00";
+    $("txtRecord").value = record?.body?.[record.body.length-1] ?? "";
+}
+
 function updateSymbolBank(){
     let symbolBank = $("divBankSymbol");
     let symbolNameList = (searchResults.query?.trim())
