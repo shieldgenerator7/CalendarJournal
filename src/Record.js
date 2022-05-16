@@ -13,8 +13,7 @@ class Record{
         if (this.body.length > 0){
             let lastPart = this.body[this.body.length - 1];
             let similar = part.includes(lastPart) || lastPart.includes(part);
-            let symbol = part.startsWith("[") && part.endsWith("]")
-                || lastPart.startsWith("[") && lastPart.endsWith("]");
+            let symbol = isPartSymbol(part) || isPartSymbol(lastPart);
             if (similar && !symbol){
                 lastPart = part;
                 this.body[this.body.length - 1] = lastPart;
@@ -27,4 +26,11 @@ class Record{
             this.body.push(part);
         }
     }
+}
+
+function isPartSymbol(part){
+    return part.startsWith("[") && part.endsWith("]");
+}
+function partToSymbol(part){
+    return part.slice(1).slice(0,-1);
 }

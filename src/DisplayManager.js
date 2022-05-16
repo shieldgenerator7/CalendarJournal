@@ -122,10 +122,30 @@ function repaintEntryCanvas(entry, textSize){
         drawY2 += textSize;
     });
     //Draw records
-    drawX = 0;
     drawY += textSize*2;
     entry.records.forEach((record, i) => {
-        ctx.fillText(record.body[0], drawX, drawY);
+        drawX = 0;
+        record.body.forEach((part, i) => {
+            //TODO: scale these parts down (or wrap it?) if it is too wide
+            if (!isPartSymbol(part)){
+                ctx.fillText(
+                    part,
+                    drawX,
+                    drawY
+                );
+                drawX += getTextSize(part).x;
+            }
+            else{
+                ctx.drawImage(
+                    symbols[partToSymbol(part)].icon,
+                    drawX,
+                    drawY-textSize,
+                    textSize,
+                    textSize
+                );
+                drawX += textSize;
+            }
+        });
         drawY += textSize;
     });
 
