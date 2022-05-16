@@ -21,6 +21,3 @@ function createSymbolButtonString(symbolName){
             <img src="src/Assets/Sprites/${symbolName}.png" />
         </button>`;
 }
-
-//TODO: move this call to the main controller script
-updateSymbolBank();

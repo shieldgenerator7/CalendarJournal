@@ -39,6 +39,3 @@ function createSymbol(symbolName, fileName){
     //Return symbol
     return symbol;
 }
-
-//TODO: move this call to the main controller script
-initSymbols();
