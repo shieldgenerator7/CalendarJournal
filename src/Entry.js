@@ -57,8 +57,11 @@ class Entry{
         }
     }
 
-    addBadge(symbols){
-        this.badges.push(symbols);
+    addBadge(symbol){
+        if (this.badges.includes(symbol)){
+            this.badges.splice(this.badges.indexOf(symbol),1);
+        }
+        this.badges.push(symbol);
     }
 
     addNewRecord(){
