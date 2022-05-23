@@ -47,7 +47,10 @@ function repaintEntryCanvas(boxSet){
     let size = boxSet.canvasSize;
     //Clear rect
     ctx.clearRect(0,0,size,size);
+    ctx.fillStyle = "#FFFFFF";
+    ctx.fillRect(0,0,size,size);
     //Paint boxes
+    ctx.fillStyle = "#000000";
     boxSet.boxes.forEach((box, i) => {
         switch (box.type){
             case TYPE_TEXT:

@@ -4,6 +4,7 @@
 
 .panel {
     width: 100%;
+    background-color: #BBBBBB;
 }
 
 .divCanvas {
@@ -30,6 +31,7 @@ p {
 .sidebar {
     float: right;
     padding: 10px;
+    background-color: #EEEEEE;
 }
 
 .txtTime{

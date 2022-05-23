@@ -48,7 +48,7 @@ function generateBoxSet(entry, textSize, canvasSize){
     //Place badges
     place.x = 0;
     place.y += textSize * 0.3;
-    let badgeLimitX = canvasSize - (textSize*2);
+    let badgeLimitX = canvasSize - (textSize*1);
     size = new Vector2(textSize, textSize);
     entry.badges.forEach((badge, i) => {
         createBox(
@@ -65,7 +65,7 @@ function generateBoxSet(entry, textSize, canvasSize){
     place.y += textSize;
     //Place pleasures
     let place2 = new Vector2(
-        canvasSize - (textSize * 2.1),
+        canvasSize - (textSize * 1.1),
         0
     );
     size = new Vector2(textSize, textSize);
