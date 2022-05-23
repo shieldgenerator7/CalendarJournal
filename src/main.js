@@ -68,6 +68,15 @@ function btnRecordAddClicked(){
     updateEntryFields(entry);
 }
 
+function btnCopyClicked(){
+    //2022-05-23: copied from https://stackoverflow.com/a/57546936/2336212
+    let canvas = $("cvsEntry");
+    canvas.toBlob(function(blob) {
+        const item = new ClipboardItem({ "image/png": blob });
+        navigator.clipboard.write([item]);
+    });
+}
+
 
 //TODO: move this to Utility script
 Math.clamp = function(amount, min, max){
