@@ -11,6 +11,11 @@ class Box{
         this.content = content;
         this.type = getContentType(content);
     }
+
+    contains(pos){
+        return this.position.x <= pos.x && pos.x <= this.position.x + this.size.x
+            && this.position.y <= pos.y && pos.y <= this.position.y + this.size.y;
+    }
 }
 
 function getContentType(content){

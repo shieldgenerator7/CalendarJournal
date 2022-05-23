@@ -93,3 +93,13 @@ function createBox(content, position, size){
     boxSet.boxes.push(box);
     return box;
 }
+
+function getBox(pos){
+    return getBoxes(pos)[0];
+}
+
+function getBoxes(pos){
+    return boxSet.boxes.filter(
+        box => box.contains(pos)
+    );
+}
