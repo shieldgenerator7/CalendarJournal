@@ -122,7 +122,7 @@ function repaintBoxText(box, boxSet, ctx){
     ctx.fillText(
         box.content,
         box.position.x,
-        box.position.y
+        box.position.y + boxSet.textSize
     );
 }
 

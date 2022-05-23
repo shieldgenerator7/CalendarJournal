@@ -6,6 +6,7 @@ function checkClick(e){
     if (box){
         let changed = box.activate?.(mpos);
         // if (changed){
+            updateEntryFields(entry);
             generateBoxSet(entry);
             repaintEntryCanvas();
         // }

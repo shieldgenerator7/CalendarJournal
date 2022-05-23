@@ -21,7 +21,7 @@ function generateBoxSet(entry, textSize, canvasSize){
     boxSet.canvasSize = canvasSize;
     //Initialization
     let str = "";
-    let place = new Vector2(0,textSize);
+    let place = new Vector2(0,0);
     let size = new Vector2(textSize,textSize);
     let box = undefined;
     //Header text date
@@ -35,16 +35,16 @@ function generateBoxSet(entry, textSize, canvasSize){
     str = `${(""+entry.wake.time).padStart(2,"0")}`;
     size = new Vector2(getTextSize(str).x, textSize);
     box = createBox(str, place, size);
-    box.activate = entry.setWakeTime();
+    box.activate = (mpos) => entry.setWakeTime();
     place.x += size.x;
     //Header text bed time
     place.x += getTextSize(" ").x;
     str = `${(""+entry.bed.time).padStart(2,"0")}`;
     size = new Vector2(getTextSize(str).x, textSize);
     box = createBox(str, place, size);
-    box.activate = entry.setBedTime();
+    box.activate = (mpos) => entry.setBedTime();
     place.x += size.x;
-    // place.y += size.y;
+    place.y += size.y;
     //Place badges
     place.x = 0;
     place.y += textSize * 0.3;
@@ -111,7 +111,8 @@ function createBox(content, position, size){
 }
 
 function getBox(pos){
-    return getBoxes(pos)[0];
+    let boxes = getBoxes(pos);
+    return boxes[0];
 }
 
 function getBoxes(pos){
