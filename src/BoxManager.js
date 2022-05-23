@@ -102,6 +102,14 @@ function generateBoxSet(entry, textSize, canvasSize){
         });
         place.y += textSize;
     });
+    //Watermark
+    let smallTextSize = textSize / 2;
+    let font = `${smallTextSize}px Consolas`;
+    str = "initially generated with CalendarJournal";
+    place = new Vector2(0, canvasSize - (smallTextSize*1.2));
+    size = new Vector2(getTextSize(str, font).x, smallTextSize);
+    box = createBox(str, place, size);
+    box.textSize = smallTextSize;
 }
 
 function createBox(content, position, size){

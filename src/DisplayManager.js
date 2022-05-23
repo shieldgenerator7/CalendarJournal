@@ -121,11 +121,12 @@ function repaintBoxText(box, boxSet, ctx){
     if (!box){
         console.error("Must pass in a box!", box);
     }
-    ctx.font = `${boxSet.textSize}px Consolas`;
+    let textSize = box.textSize ?? boxSet.textSize;
+    ctx.font = `${textSize}px Consolas`;
     ctx.fillText(
         box.content,
         box.position.x,
-        box.position.y + boxSet.textSize
+        box.position.y + textSize
     );
 }
 
