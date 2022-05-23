@@ -16,6 +16,7 @@ function generateBoxSet(entry, textSize, canvasSize){
     textSize ??= boxSet.textSize ?? 30;
     canvasSize ??= boxSet.canvasSize ?? 350;
     //Set boxSet
+    boxSet.boxes = [];
     boxSet.textSize = textSize;
     boxSet.canvasSize = canvasSize;
     //Initialization
@@ -39,9 +40,11 @@ function generateBoxSet(entry, textSize, canvasSize){
     size = new Vector2(getTextSize(str).x, textSize);
     createBox(str, place, size);
     place.x += size.x;
-    place.y += size.y;
+    // place.y += size.y;
     //Place badges
-    let badgeLimitX = canvasSize - textSize;
+    place.x = 0;
+    place.y += textSize * 0.3;
+    let badgeLimitX = canvasSize - (textSize*2);
     size = new Vector2(textSize, textSize);
     entry.badges.forEach((badge, i) => {
         createBox(
@@ -57,7 +60,10 @@ function generateBoxSet(entry, textSize, canvasSize){
     });
     place.y += textSize;
     //Place pleasures
-    let place2 = new Vector2(badgeLimitX, 0);
+    let place2 = new Vector2(
+        canvasSize - (textSize * 2.1),
+        0
+    );
     size = new Vector2(textSize, textSize);
     entry.pleasures.forEach((pleasure, i) => {
         createBox(
@@ -79,7 +85,6 @@ function generateBoxSet(entry, textSize, canvasSize){
                     place,
                     size
                 );
-                place.x += size.x;
             }
             else{
                 size = new Vector2(textSize, textSize);
@@ -88,8 +93,8 @@ function generateBoxSet(entry, textSize, canvasSize){
                     place,
                     size
                 );
-                place.x += size.x;
             }
+            place.x += size.x;
         });
         place.y += textSize;
     });
