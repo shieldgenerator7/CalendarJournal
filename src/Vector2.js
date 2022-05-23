@@ -20,6 +20,11 @@ class Vector2 {
 		return new Vector2(this.x*m, this.y*m);
 	}
 
+	copy(){
+		let v = new Vector2(this.x,this.y);
+		return v;
+	}
+
 	toString(){
 		return "("+this.x+", "+this.y+")";
 	}

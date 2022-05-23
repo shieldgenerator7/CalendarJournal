@@ -10,7 +10,8 @@ function initCalendarJournal(){
     entry ??= new Entry();
     record = undefined;
     updateEntryFields(entry);
-    repaintEntryCanvas(entry);
+    generateBoxSet(entry);
+    repaintEntryCanvas();
 }
 initCalendarJournal();
 
@@ -24,7 +25,8 @@ function txtSearchSymbolsChanged(){
 function txtTimeChanged(){
     entry.setWakeTime($('txtTimeWake').value);
     entry.setBedTime($('txtTimeBed').value);
-    repaintEntryCanvas(entry);
+    generateBoxSet(entry);
+    repaintEntryCanvas();
 }
 
 //TODO: perhaps move this to another script?
@@ -42,7 +44,8 @@ function btnSymbolClicked(symbol){
         record.addPart("");
         updateEntryFields(entry);
     }
-    repaintEntryCanvas(entry);
+    generateBoxSet(entry);
+    repaintEntryCanvas();
 }
 
 //TODO: perhaps remove this function and the HTML element that uses it
@@ -52,7 +55,8 @@ function txtRecordChanged(){
     }
     record.addPart($("txtRecord").value);
     updateEntryFields(entry);
-    repaintEntryCanvas(entry);
+    generateBoxSet(entry);
+    repaintEntryCanvas();
 }
 //TODO: perhaps remove this function and the HTML element that uses it
 function btnRecordAddClicked(){

@@ -36,29 +36,39 @@ function createSymbolButtonString(symbolName){
 }
 
 //TODO: perhaps move to a drawing script
-function repaintEntryCanvas(entry, textSize){
-    if (!entry){
-        console.error("Invalid entry!", entry);
-        return;
-    }
-    textSize ??= 30;
+function repaintEntryCanvas(boxSet){
+    //Defaults
+    boxSet ??= getBoxSet();
+    //Initialization
     let canvas = $("cvsEntry");
     let ctx = canvas.getContext("2d");
-    canvas.width = canvas.clientWidth;
-    canvas.height = canvas.clientHeight;
-    let size = (canvas.width < canvas.height)
-        ? canvas.width
-        : canvas.height;
+    canvas.width = boxSet.canvasSize;
+    canvas.height = boxSet.canvasSize;
+    let size = boxSet.canvasSize;
     //Clear rect
     ctx.clearRect(0,0,size,size);
-    //Header text
-    ctx.font = `${textSize}px Consolas`;
-    ctx.fillText(
-        `${entry.date} ${(""+entry.wake.time).padStart(2,"0")} ${(""+entry.bed.time).padStart(2,"0")}`,
-        0,
-        textSize
-    );
+    //Paint boxes
+    boxSet.boxes.forEach((box, i) => {
+        switch (box.type){
+            case TYPE_TEXT:
+                repaintBoxText(box, boxSet, ctx);
+                break;
+            case TYPE_IMAGE:
+                repaintBoxImage(box, boxSet, ctx);
+                break;
+            case TYPE_CONTAINER:
+                repaintBoxContainer(box, boxSet, ctx);
+                break;
+            default:
+                console.error(
+                    "Unknown type!", box.type,
+                    "at index:", i,
+                    "content:", box.content
+                );
+        }
+    });
     //Circles around wake time
+    let textSize = boxSet.textSize;
     ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.arc(
@@ -102,51 +112,33 @@ function repaintEntryCanvas(entry, textSize){
         entry.bed.side == AFTER
     );
     ctx.stroke();
-    //Draw badges
-    let drawX = 0;
-    let drawY = textSize + textSize/2;
-    let badgeLimitX = canvas.width-textSize;
-    entry.badges.forEach((badge, i) => {
-        ctx.drawImage(symbols[badge].icon, drawX, drawY, textSize, textSize);
-        drawX += textSize;
-        if (drawX >= badgeLimitX - textSize){
-            drawX = 0;
-            drawY += textSize;
-        }
-    });
-    //Draw pleasures
-    let drawX2 = canvas.width-textSize;
-    let drawY2 = 0;
-    entry.pleasures.forEach((pleasure, i) => {
-        ctx.drawImage(symbols[pleasure].icon, drawX2, drawY2, textSize, textSize);
-        drawY2 += textSize;
-    });
-    //Draw records
-    drawY += textSize*2;
-    entry.records.forEach((record, i) => {
-        drawX = 0;
-        record.body.forEach((part, i) => {
-            //TODO: scale these parts down (or wrap it?) if it is too wide
-            if (!isPartSymbol(part)){
-                ctx.fillText(
-                    part,
-                    drawX,
-                    drawY
-                );
-                drawX += getTextSize(part).x;
-            }
-            else{
-                ctx.drawImage(
-                    symbols[partToSymbol(part)].icon,
-                    drawX,
-                    drawY-textSize,
-                    textSize,
-                    textSize
-                );
-                drawX += textSize;
-            }
-        });
-        drawY += textSize;
-    });
+}
 
+function repaintBoxText(box, boxSet, ctx){
+    if (!box){
+        console.error("Must pass in a box!", box);
+    }
+    ctx.font = `${boxSet.textSize}px Consolas`;
+    ctx.fillText(
+        box.content,
+        box.position.x,
+        box.position.y
+    );
+}
+
+function repaintBoxImage(box, boxSet, ctx){
+    if (!box){
+        console.error("Must pass in a box!", box);
+    }
+    ctx.drawImage(
+        box.content,
+        box.position.x,
+        box.position.y,
+        boxSet.textSize,
+        boxSet.textSize
+    );
+}
+
+function repaintBoxContainer(box, boxSet, ctx){
+    //TODO: maybe refactor so this method is useful?
 }

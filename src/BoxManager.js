@@ -2,34 +2,41 @@
 
 let boxSet = {
     boxes: [],
+    textSize: 30,
+    canvasSize: 350
 }
 
-function updateBoxSet(entry, textSize, canvasSize){
+function generateBoxSet(entry, textSize, canvasSize){
     //Error checking
     if (!entry){
         console.error("Invalid entry!", entry);
         return;
     }
     //Defaults
-    textSize ??= 30;
-    canvasSize ??= 350;
+    textSize ??= boxSet.textSize ?? 30;
+    canvasSize ??= boxSet.canvasSize ?? 350;
+    //Set boxSet
+    boxSet.textSize = textSize;
+    boxSet.canvasSize = canvasSize;
     //Initialization
     let str = "";
-    let place = new Vector2(0,0);
+    let place = new Vector2(0,textSize);
     let size = new Vector2(textSize,textSize);
     //Header text date
     str = `${entry.date}`;
-    size = new Vector2(textSize,textSize);
+    size = new Vector2(getTextSize(str).x, textSize);
     createBox(str, place, size);
     place.x += size.x;
     //Header text wake time
+    place.x += getTextSize(" ").x;
     str = `${(""+entry.wake.time).padStart(2,"0")}`;
-    size = new Vector2(textSize,textSize);
+    size = new Vector2(getTextSize(str).x, textSize);
     createBox(str, place, size);
     place.x += size.x;
     //Header text bed time
+    place.x += getTextSize(" ").x;
     str = `${(""+entry.bed.time).padStart(2,"0")}`;
-    size = new Vector2(textSize,textSize);
+    size = new Vector2(getTextSize(str).x, textSize);
     createBox(str, place, size);
     place.x += size.x;
     place.y += size.y;
@@ -66,7 +73,7 @@ function updateBoxSet(entry, textSize, canvasSize){
         record.body.forEach((part, i) => {
             //TODO: scale these parts down (or wrap it?) if it is too wide
             if (!isPartSymbol(part)){
-                size = new Vector2(getTextSize(part), textSize);
+                size = new Vector2(getTextSize(part).x, textSize);
                 createBox(
                     part,
                     place,
@@ -89,7 +96,7 @@ function updateBoxSet(entry, textSize, canvasSize){
 }
 
 function createBox(content, position, size){
-    let box = new Box(content, position, size);
+    let box = new Box(content, position.copy(), size.copy());
     boxSet.boxes.push(box);
     return box;
 }
@@ -102,4 +109,8 @@ function getBoxes(pos){
     return boxSet.boxes.filter(
         box => box.contains(pos)
     );
+}
+
+function getBoxSet(){
+    return boxSet;
 }
