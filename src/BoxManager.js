@@ -98,7 +98,7 @@ function generateBoxSet(entry, textSize, canvasSize){
                     size
                 );
             }
-            place.x += size.x;
+            place.x += size.x + (size.y*0.1);
         });
         place.y += textSize;
     });

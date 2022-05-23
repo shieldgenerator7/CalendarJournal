@@ -93,7 +93,10 @@ class Entry{
     }
 
     cleanRecords(){
+        //Remove empty records
         this.records = this.records.filter(record=>record?.isValid());
+        //Remove empty parts from records
+        this.records.forEach((record) => record.cleanParts());
     }
 }
 

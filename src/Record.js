@@ -26,6 +26,13 @@ class Record{
             this.body.push(part);
         }
     }
+
+    cleanParts(){
+        this.body = this.body.map(part =>
+            (typeof part === "string") ?part.trim() :part
+        );
+        this.body = this.body.filter(part=>part);
+    }
 }
 
 function isPartSymbol(part){
