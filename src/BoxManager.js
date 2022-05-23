@@ -28,7 +28,7 @@ function generateBoxSet(entry, textSize, canvasSize){
     str = `${entry.date}`;
     size = new Vector2(getTextSize(str).x, textSize);
     box = createBox(str, place, size);
-    box.activate = entry.flipDate();
+    box.activate = (mpos) => entry.flipDate();
     place.x += size.x;
     //Header text wake time
     place.x += getTextSize(" ").x;
@@ -79,7 +79,7 @@ function generateBoxSet(entry, textSize, canvasSize){
     });
     //Draw records
     entry.records.forEach((record, i) => {
-        place.X = 0;
+        place.x = 0;
         record.body.forEach((part, i) => {
             //TODO: scale these parts down (or wrap it?) if it is too wide
             if (!isPartSymbol(part)){

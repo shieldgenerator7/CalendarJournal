@@ -21,7 +21,7 @@ class Box{
 
 function getContentType(content){
     //Error checking
-    if (!content){
+    if (!content && content != ""){
         console.error("Must pass in some content!", content);
         return undefined;
     }
