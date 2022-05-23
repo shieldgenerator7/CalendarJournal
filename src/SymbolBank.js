@@ -4,6 +4,7 @@ const IMAGE_DIR = "src/Assets/Images/";
 const SPRITE_DIR = "src/Assets/Sprites/";
 
 const symbolNames = [
+    //Badges
     "fruit",
     "language",
     "call",
@@ -22,6 +23,8 @@ const symbolNames = [
     "trim",
     "draw",
     "write",
+    //Pleasures
+    "cat",
     "youtube",
     "twitter",
     "facebook",
@@ -29,6 +32,9 @@ const symbolNames = [
     "icecream",
     "lounge",
     "porn",
+    //Other
+    "sighting",
+    "explore",
 ];
 
 let badgeSymbols = [
@@ -52,6 +58,7 @@ let badgeSymbols = [
     "write",
 ];
 let pleasureSymbols = [
+    "cat",
     "youtube",
     "twitter",
     "facebook",
