@@ -10,6 +10,7 @@ class Box{
         this.size = size ?? new Vector2();
         this.content = content;
         this.type = getContentType(content);
+        this.activate = function(mpos){ return false; };
     }
 
     contains(pos){

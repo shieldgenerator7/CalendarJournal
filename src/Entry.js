@@ -20,7 +20,22 @@ class Entry{
         this.records = [];
     }
 
+    flipDate(){
+        let today = new Date();
+        let yesterday = new Date();
+        yesterday.setDate(today.getDate() - 1);
+        today = today.toISOString().slice(0, 10);
+        yesterday = yesterday.toISOString().slice(0, 10);
+        if (this.date == today){
+            this.date = yesterday;
+        }
+        else if (this.date == yesterday) {
+            this.date = today;
+        }
+    }
+
     setWakeTime(timeString){
+        timeString ??= getCurrentTimeString();
         let split = timeString.split(":");
         let hour = split[0]*1;
         let minute = split[1]*1;
@@ -39,6 +54,7 @@ class Entry{
         }
     }
     setBedTime(timeString){
+        timeString ??= getCurrentTimeString();
         let split = timeString.split(":");
         let hour = split[0]*1;
         let minute = split[1]*1;
@@ -79,4 +95,9 @@ class Entry{
     cleanRecords(){
         this.records = this.records.filter(record=>record?.isValid());
     }
+}
+
+function getCurrentTimeString(){
+    let today = new Date();
+    return `${today.getHours()}:${today.getMinutes()}`;
 }

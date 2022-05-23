@@ -23,22 +23,26 @@ function generateBoxSet(entry, textSize, canvasSize){
     let str = "";
     let place = new Vector2(0,textSize);
     let size = new Vector2(textSize,textSize);
+    let box = undefined;
     //Header text date
     str = `${entry.date}`;
     size = new Vector2(getTextSize(str).x, textSize);
-    createBox(str, place, size);
+    box = createBox(str, place, size);
+    box.activate = entry.flipDate();
     place.x += size.x;
     //Header text wake time
     place.x += getTextSize(" ").x;
     str = `${(""+entry.wake.time).padStart(2,"0")}`;
     size = new Vector2(getTextSize(str).x, textSize);
-    createBox(str, place, size);
+    box = createBox(str, place, size);
+    box.activate = entry.setWakeTime();
     place.x += size.x;
     //Header text bed time
     place.x += getTextSize(" ").x;
     str = `${(""+entry.bed.time).padStart(2,"0")}`;
     size = new Vector2(getTextSize(str).x, textSize);
-    createBox(str, place, size);
+    box = createBox(str, place, size);
+    box.activate = entry.setBedTime();
     place.x += size.x;
     // place.y += size.y;
     //Place badges

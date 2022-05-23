@@ -9,11 +9,15 @@ function initCalendarJournal(){
     updateSymbolBank();
     entry ??= new Entry();
     record = undefined;
+    //
+    $("cvsEntry").onclick = function(e){
+        checkClick(e);
+    }
+    //
     updateEntryFields(entry);
     generateBoxSet(entry);
     repaintEntryCanvas();
 }
-initCalendarJournal();
 
 //TODO: perhaps move this to another script?
 function txtSearchSymbolsChanged(){
@@ -90,3 +94,6 @@ function getTextSize(text, font) {
   const metrics = context.measureText(text);
   return new Vector2(metrics.width, metrics.actualBoundingBoxAscent);
 }
+
+//Initialize everything
+initCalendarJournal();
