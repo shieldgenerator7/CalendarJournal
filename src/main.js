@@ -53,15 +53,6 @@ function txtRecordChanged(){
     generateBoxSet(entry);
     repaintEntryCanvas();
 }
-//TODO: perhaps remove this function and the HTML element that uses it
-function btnRecordAddClicked(){
-    selection.record = undefined;
-    selection.symbolFunction = undefined;
-    entry.cleanRecords();
-    updateEntryFields(entry);
-    generateBoxSet(entry);
-    repaintEntryCanvas();
-}
 
 function btnCopyClicked(){
     //2022-05-23: copied from https://stackoverflow.com/a/57546936/2336212
