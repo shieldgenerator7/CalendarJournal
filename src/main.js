@@ -56,6 +56,7 @@ function txtRecordChanged(){
 //TODO: perhaps remove this function and the HTML element that uses it
 function btnRecordAddClicked(){
     selection.record = undefined;
+    selection.symbolFunction = undefined;
     entry.cleanRecords();
     updateEntryFields(entry);
     generateBoxSet(entry);
