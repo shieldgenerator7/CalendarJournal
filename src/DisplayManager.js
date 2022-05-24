@@ -49,10 +49,13 @@ function repaintEntryCanvas(boxSet){
     ctx.clearRect(0,0,size,size);
     ctx.fillStyle = "#FFFFFF";
     ctx.fillRect(0,0,size,size);
+    //Hover lines
+    repaintHoverLines(ctx);
     //Selection lines
     repaintSelectLines(ctx);
     //Paint boxes
     ctx.fillStyle = "#000000";
+    ctx.strokeStyle = "#000000";
     boxSet.boxes.forEach((box, i) => {
         switch (box.type){
             case TYPE_TEXT:
@@ -150,6 +153,19 @@ function repaintBoxContainer(box, boxSet, ctx){
 }
 
 function repaintSelectLines(ctx){
+    let box = selection.editBox;
+    if (box){
+        ctx.strokeStyle = "#60D1EE";
+        ctx.lineWidth = 3;
+        ctx.strokeRect(
+            box.position.x,
+            box.position.y,
+            box.size.x,
+            box.size.y
+        );
+    }
+}
+function repaintHoverLines(ctx){
     let box = selection.mouseOverBox;
     if (box){
         ctx.fillStyle = "#93E4FF";
