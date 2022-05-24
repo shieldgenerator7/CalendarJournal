@@ -27,6 +27,12 @@ const symbolNames = [
     "write",
     "shopping",
     "help",
+    "money",
+    "alarmClock",
+    "organize",
+    "mail",
+    "protest",
+    "doctor",
     //Pleasures
     "cat",
     "youtube",
@@ -42,6 +48,9 @@ const symbolNames = [
     //Other
     "sighting",
     "explore",
+    "walk",
+    "run",
+    "bike",
 ];
 
 let symbols = [];//dictionary mapped from symbol name to symbol object
