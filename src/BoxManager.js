@@ -73,22 +73,29 @@ function generateBoxSet(entry, textSize, canvasSize){
         0
     );
     size = new Vector2(textSize, textSize);
+    containerBox = createBox("container", place2, size);
+    boxes = [];
     entry.pleasures.forEach((pleasure, i) => {
-        createBox(
+        let newBox = createBox(
             symbols[pleasure].icon,
             place2,
             size
         );
+        boxes.push(newBox);
         place2.y += textSize;
     });
+    convertBoxToContainer(containerBox, boxes);
     //Draw records
     entry.records.forEach((record, i) => {
         place.x = 0;
+        containerBox = createBox("container", place, size);
+        boxes = [];
         record.body.forEach((part, i) => {
+            let newBox;
             //TODO: scale these parts down (or wrap it?) if it is too wide
             if (!isPartSymbol(part)){
                 size = new Vector2(getTextSize(part).x, textSize);
-                createBox(
+                newBox = createBox(
                     part,
                     place,
                     size
@@ -96,14 +103,16 @@ function generateBoxSet(entry, textSize, canvasSize){
             }
             else{
                 size = new Vector2(textSize, textSize);
-                createBox(
+                newBox = createBox(
                     symbols[partToSymbol(part)].icon,
                     place,
                     size
                 );
             }
+            boxes.push(newBox);
             place.x += size.x + (size.y*0.1);
         });
+        convertBoxToContainer(containerBox, boxes);
         place.y += textSize;
     });
     //Watermark
@@ -122,6 +131,8 @@ function createBox(content, position, size){
     return box;
 }
 
+//TODO: refactor so this method is easier to use
+//maybe put a parameter in createBox() for the container to add it to
 function convertBoxToContainer(box, boxes){
     box.content = boxes;
     box.type = TYPE_CONTAINER;
