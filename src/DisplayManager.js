@@ -49,6 +49,8 @@ function repaintEntryCanvas(boxSet){
     ctx.clearRect(0,0,size,size);
     ctx.fillStyle = "#FFFFFF";
     ctx.fillRect(0,0,size,size);
+    //Selection lines
+    repaintSelectLines(ctx);
     //Paint boxes
     ctx.fillStyle = "#000000";
     boxSet.boxes.forEach((box, i) => {
@@ -115,8 +117,6 @@ function repaintEntryCanvas(boxSet){
         entry.bed.side == AFTER
     );
     ctx.stroke();
-    //Selection lines
-    repaintSelectLines(ctx);
 }
 
 function repaintBoxText(box, boxSet, ctx){
@@ -152,8 +152,8 @@ function repaintBoxContainer(box, boxSet, ctx){
 function repaintSelectLines(ctx){
     let box = selection.mouseOverBox;
     if (box){
-        ctx.strokeStyle = "#00AAFF";
-        ctx.strokeRect(
+        ctx.fillStyle = "#93E4FF";
+        ctx.fillRect(
             box.position.x,
             box.position.y,
             box.size.x,
