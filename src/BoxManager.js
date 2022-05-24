@@ -118,8 +118,12 @@ function createBox(content, position, size){
     return box;
 }
 
-function getBox(pos){
+function getBox(pos, onlySelectable){
+    onlySelectable ??= true;
     let boxes = getBoxes(pos);
+    if (onlySelectable){
+        boxes = boxes.filter(box=>box.selectable());
+    }
     return boxes[0];
 }
 

@@ -10,12 +10,16 @@ class Box{
         this.size = size ?? new Vector2();
         this.content = content;
         this.type = getContentType(content);
-        this.activate = function(mpos){ return false; };
+        this.activate = undefined;//function(mpos){ return false; };
     }
 
     contains(pos){
         return this.position.x <= pos.x && pos.x <= this.position.x + this.size.x
             && this.position.y <= pos.y && pos.y <= this.position.y + this.size.y;
+    }
+
+    selectable(pos){
+        return this.activate || this.type == TYPE_CONTAINER;
     }
 }
 
