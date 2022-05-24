@@ -111,10 +111,12 @@ function generateBoxSet(entry, textSize, canvasSize){
         );
         containerBox.activate = ()=>{
             selection.record = record;
+            $("txtRecord").focus();
         };
         containerBox.symbolFunction = (symbol)=>{
             selection.record.addPart(`[${symbol}]`);
             selection.record.addPart("");
+            $("txtRecord").focus();
         };
         record.body.forEach((part, i) => {
             let newBox;
@@ -152,6 +154,7 @@ function generateBoxSet(entry, textSize, canvasSize){
     containerBox.activate = ()=>{
         selection.record = entry.addNewRecord();
         selection.record.addPart("");
+        $("txtRecord").focus();
         updateEntryFields(entry);
         generateBoxSet(entry);
         repaintEntryCanvas();
@@ -159,6 +162,7 @@ function generateBoxSet(entry, textSize, canvasSize){
     containerBox.symbolFunction = (symbol)=>{
         selection.record.addPart(`[${symbol}]`);
         selection.record.addPart("");
+        $("txtRecord").focus();
         updateEntryFields(entry);
         generateBoxSet(entry);
         repaintEntryCanvas();

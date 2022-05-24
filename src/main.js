@@ -16,6 +16,20 @@ function initCalendarJournal(){
         checkMouseMove(e);
     }
     //
+    $("txtRecord").addEventListener("keyup", (e)=>{
+        //Enter key
+        if (e.keyCode === 13){
+            //TODO: make method to create new record and edit it
+            selection.record = entry.addNewRecord();
+            selection.record.addPart("");
+            $("txtRecord").focus();
+            entry.cleanRecords();
+            updateEntryFields(entry);
+            generateBoxSet(entry);
+            repaintEntryCanvas();
+        }
+    });
+    //
     updateEntryFields(entry);
     generateBoxSet(entry);
     repaintEntryCanvas();
