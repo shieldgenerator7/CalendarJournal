@@ -2,13 +2,11 @@
 
 //TODO: move this to its own place (it doesnt belong here, i dont think)
 let entry;
-let record;
 
 function initCalendarJournal(){
     initSymbols();
     updateSymbolBank();
     entry ??= new Entry();
-    record = undefined;
     //
     let cvsEntry = $("cvsEntry");
     cvsEntry.onclick = function(e){
@@ -39,36 +37,25 @@ function txtTimeChanged(){
 
 //TODO: perhaps move this to another script?
 function btnSymbolClicked(symbol){
-    if (!record){
-        if (badgeSymbols.includes(symbol)){
-            entry.addBadge(symbol);
-        }
-        if (pleasureSymbols.includes(symbol)){
-            entry.addPleasure(symbol);
-        }
-    }
-    else{
-        record.addPart(`[${symbol}]`);
-        record.addPart("");
-        updateEntryFields(entry);
-    }
+    selection.symbolFunction?.(symbol);
+    updateEntryFields(entry);
     generateBoxSet(entry);
     repaintEntryCanvas();
 }
 
 //TODO: perhaps remove this function and the HTML element that uses it
 function txtRecordChanged(){
-    if (!record){
-        record = entry.addNewRecord();
+    if (!selection.record){
+        selection.record = entry.addNewRecord();
     }
-    record.addPart($("txtRecord").value);
+    selection.record.addPart($("txtRecord").value);
     updateEntryFields(entry);
     generateBoxSet(entry);
     repaintEntryCanvas();
 }
 //TODO: perhaps remove this function and the HTML element that uses it
 function btnRecordAddClicked(){
-    record = undefined;
+    selection.record = undefined;
     entry.cleanRecords();
     updateEntryFields(entry);
     generateBoxSet(entry);

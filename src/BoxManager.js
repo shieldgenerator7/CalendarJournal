@@ -50,7 +50,16 @@ function generateBoxSet(entry, textSize, canvasSize){
     place.y += textSize * 0.3;
     let badgeLimitX = canvasSize - (textSize*1);
     size = new Vector2(textSize, textSize);
-    let containerBox = createContainer();
+    let containerBox = createContainer(
+        place,
+        new Vector2(
+            boxSet.canvasSize - boxSet.textSize,
+            boxSet.textSize
+        )
+    );
+    containerBox.symbolFunction = (symbol)=>{
+        entry.addBadge(symbol);
+    };
     entry.badges.forEach((badge, i) => {
         let newBox = createBox(
             symbols[badge].icon,
@@ -71,7 +80,16 @@ function generateBoxSet(entry, textSize, canvasSize){
         0
     );
     size = new Vector2(textSize, textSize);
-    containerBox = createContainer();
+    containerBox = createContainer(
+        place2,
+        new Vector2(
+            boxSet.textSize,
+            boxSet.canvasSize
+        )
+    );
+    containerBox.symbolFunction = (symbol)=>{
+        entry.addPleasure(symbol);
+    };
     entry.pleasures.forEach((pleasure, i) => {
         let newBox = createBox(
             symbols[pleasure].icon,
@@ -84,7 +102,20 @@ function generateBoxSet(entry, textSize, canvasSize){
     //Draw records
     entry.records.forEach((record, i) => {
         place.x = 0;
-        containerBox = createContainer();
+        containerBox = createContainer(
+            place,
+            new Vector2(
+                boxSet.canvasSize - boxSet.textSize,
+                boxSet.textSize
+            )
+        );
+        containerBox.activate = ()=>{
+            selection.record = record;
+        };
+        containerBox.symbolFunction = (symbol)=>{
+            selection.record.addPart(`[${symbol}]`);
+            selection.record.addPart("");
+        };
         record.body.forEach((part, i) => {
             let newBox;
             //TODO: scale these parts down (or wrap it?) if it is too wide
@@ -109,6 +140,30 @@ function generateBoxSet(entry, textSize, canvasSize){
         });
         place.y += textSize;
     });
+    //New record box
+    place.x = 0;
+    containerBox = createContainer(
+        place,
+        new Vector2(
+            boxSet.canvasSize - boxSet.textSize,
+            boxSet.textSize
+        )
+    );
+    containerBox.activate = ()=>{
+        selection.record = entry.addNewRecord();
+        selection.record.addPart("");
+        updateEntryFields(entry);
+        generateBoxSet(entry);
+        repaintEntryCanvas();
+    };
+    containerBox.symbolFunction = (symbol)=>{
+        selection.record.addPart(`[${symbol}]`);
+        selection.record.addPart("");
+        updateEntryFields(entry);
+        generateBoxSet(entry);
+        repaintEntryCanvas();
+    };
+    place.y += textSize;
     //Watermark
     let smallTextSize = textSize / 2;
     let font = `${smallTextSize}px Consolas`;
@@ -125,9 +180,11 @@ function createBox(content, position, size){
     return box;
 }
 
-function createContainer(){
+function createContainer(position, size){
     let box = new Box(
-        []
+        [],
+        position?.copy(),
+        size?.copy()
     );
     boxSet.boxes.push(box);
     return box;

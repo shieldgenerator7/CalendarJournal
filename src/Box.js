@@ -7,10 +7,13 @@ const TYPE_CONTAINER = 3;
 class Box{
     constructor(content, position, size){
         this.position = position ?? new Vector2();
+        this._positionDefault = this.position;
         this.size = size ?? new Vector2();
+        this._sizeDefault = this.size;
         this.content = content;
         this.type = getContentType(content);
         this.activate = undefined;//function(mpos){ return false; };
+        this.symbolFunction = undefined;//function(symbol){};
     }
 
     contains(pos){
@@ -30,8 +33,8 @@ class Box{
         this._update();
     }
     _update(){
-        this.position = this.content[0]?.position ?? new Vector2(-1,-1);
-        this.size = this.content[0]?.size ?? new Vector2(0,0);
+        this.position = this.content[0]?.position ?? this._positionDefault ?? new Vector2(-1,-1);
+        this.size = this.content[0]?.size ?? this._sizeDefault ?? new Vector2(0,0);
         for(let i = 0; i < this.content.length; i++){
             let b = this.content[i];
             let p = b.position;
