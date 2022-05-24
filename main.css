@@ -63,5 +63,7 @@ p {
 .divBank{
   display: flex;
   flex-wrap: wrap;
-  width: 220px;
+  width: 235px;
+  max-height: 500px;
+  overflow: auto;
 }
