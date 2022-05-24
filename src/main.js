@@ -10,8 +10,12 @@ function initCalendarJournal(){
     entry ??= new Entry();
     record = undefined;
     //
-    $("cvsEntry").onclick = function(e){
+    let cvsEntry = $("cvsEntry");
+    cvsEntry.onclick = function(e){
         checkClick(e);
+    }
+    cvsEntry.onmousemove = function(e){
+        checkMouseMove(e);
     }
     //
     updateEntryFields(entry);

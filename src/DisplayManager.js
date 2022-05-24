@@ -115,6 +115,8 @@ function repaintEntryCanvas(boxSet){
         entry.bed.side == AFTER
     );
     ctx.stroke();
+    //Selection lines
+    repaintSelectLines(ctx);
 }
 
 function repaintBoxText(box, boxSet, ctx){
@@ -145,4 +147,17 @@ function repaintBoxImage(box, boxSet, ctx){
 
 function repaintBoxContainer(box, boxSet, ctx){
     //TODO: maybe refactor so this method is useful?
+}
+
+function repaintSelectLines(ctx){
+    let box = selection.mouseOverBox;
+    if (box){
+        ctx.strokeStyle = "#00AAFF";
+        ctx.strokeRect(
+            box.position.x,
+            box.position.y,
+            box.size.x,
+            box.size.y
+        );
+    }
 }
