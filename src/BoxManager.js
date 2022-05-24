@@ -50,18 +50,22 @@ function generateBoxSet(entry, textSize, canvasSize){
     place.y += textSize * 0.3;
     let badgeLimitX = canvasSize - (textSize*1);
     size = new Vector2(textSize, textSize);
+    let containerBox = createBox("container", place, size);
+    let boxes = [];
     entry.badges.forEach((badge, i) => {
-        createBox(
+        let newBox = createBox(
             symbols[badge].icon,
             place,
             size
         );
+        boxes.push(newBox);
         place.x += textSize;
         if (place.x >= badgeLimitX - textSize){
             place.x = 0;
             place.y += textSize;
         }
     });
+    convertBoxToContainer(containerBox, boxes);
     place.y += textSize;
     //Place pleasures
     let place2 = new Vector2(
@@ -116,6 +120,30 @@ function createBox(content, position, size){
     let box = new Box(content, position.copy(), size.copy());
     boxSet.boxes.push(box);
     return box;
+}
+
+function convertBoxToContainer(box, boxes){
+    box.content = boxes;
+    box.type = TYPE_CONTAINER;
+    box.position = new Vector2(350,350);
+    box.size = new Vector2(0,0);
+    for(let i = 0; i < boxes.length; i++){
+        let b = boxes[i];
+        let p = b.position;
+        let s = b.size;
+        if (p.x < box.position.x){
+            box.position.x = p.x;
+        }
+        if (p.y < box.position.y){
+            box.position.y = p.y;
+        }
+        if (p.x + s.x > box.position.x + box.size.x){
+            box.size.x = (p.x + s.x) - box.position.x;
+        }
+        if (p.y + s.y > box.position.y + box.size.y){
+            box.size.y = (p.y + s.y) - box.position.y;
+        }
+    }
 }
 
 function getBox(pos, onlySelectable){

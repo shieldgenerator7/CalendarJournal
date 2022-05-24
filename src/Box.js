@@ -37,7 +37,7 @@ function getContentType(content){
         if (content instanceof Image){
             return TYPE_IMAGE;
         }
-        if (content instanceof Box){
+        if (content instanceof Array){
             return TYPE_CONTAINER;
         }
         //Default object return value
