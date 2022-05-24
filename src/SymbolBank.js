@@ -37,37 +37,6 @@ const symbolNames = [
     "explore",
 ];
 
-let badgeSymbols = [
-    "fruit",
-    "language",
-    "call",
-    "earlyWake",
-    "earlyBed",
-    "teeth",
-    "antifungal",
-    "washClothes",
-    "washBed",
-    "comb",
-    "cook",
-    "litterpan",
-    "plant",
-    "showerShampoo",
-    "trash",
-    "trim",
-    "draw",
-    "write",
-];
-let pleasureSymbols = [
-    "cat",
-    "youtube",
-    "twitter",
-    "facebook",
-    "chocolate",
-    "icecream",
-    "lounge",
-    "porn",
-];
-
 let symbols = [];//dictionary mapped from symbol name to symbol object
 
 function initSymbols(){
