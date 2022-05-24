@@ -6,9 +6,11 @@ const SPRITE_DIR = "src/Assets/Sprites/";
 const symbolNames = [
     //Badges
     "fruit",
+    "vegetable",
     "language",
     "call",
     "earlyWake",
+    "earlyWakeAlarm",
     "earlyBed",
     "teeth",
     "antifungal",
@@ -23,6 +25,8 @@ const symbolNames = [
     "trim",
     "draw",
     "write",
+    "shopping",
+    "help",
     //Pleasures
     "cat",
     "youtube",
@@ -30,6 +34,9 @@ const symbolNames = [
     "facebook",
     "chocolate",
     "icecream",
+    "candy",
+    "fastfood",
+    "pizza",
     "lounge",
     "porn",
     //Other
