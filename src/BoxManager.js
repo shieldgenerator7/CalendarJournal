@@ -50,22 +50,20 @@ function generateBoxSet(entry, textSize, canvasSize){
     place.y += textSize * 0.3;
     let badgeLimitX = canvasSize - (textSize*1);
     size = new Vector2(textSize, textSize);
-    let containerBox = createBox("container", place, size);
-    let boxes = [];
+    let containerBox = createContainer();
     entry.badges.forEach((badge, i) => {
         let newBox = createBox(
             symbols[badge].icon,
             place,
             size
         );
-        boxes.push(newBox);
+        containerBox.addContent(newBox);
         place.x += textSize;
         if (place.x >= badgeLimitX - textSize){
             place.x = 0;
             place.y += textSize;
         }
     });
-    convertBoxToContainer(containerBox, boxes);
     place.y += textSize;
     //Place pleasures
     let place2 = new Vector2(
@@ -73,23 +71,20 @@ function generateBoxSet(entry, textSize, canvasSize){
         0
     );
     size = new Vector2(textSize, textSize);
-    containerBox = createBox("container", place2, size);
-    boxes = [];
+    containerBox = createContainer();
     entry.pleasures.forEach((pleasure, i) => {
         let newBox = createBox(
             symbols[pleasure].icon,
             place2,
             size
         );
-        boxes.push(newBox);
+        containerBox.addContent(newBox);
         place2.y += textSize;
     });
-    convertBoxToContainer(containerBox, boxes);
     //Draw records
     entry.records.forEach((record, i) => {
         place.x = 0;
-        containerBox = createBox("container", place, size);
-        boxes = [];
+        containerBox = createContainer();
         record.body.forEach((part, i) => {
             let newBox;
             //TODO: scale these parts down (or wrap it?) if it is too wide
@@ -109,10 +104,9 @@ function generateBoxSet(entry, textSize, canvasSize){
                     size
                 );
             }
-            boxes.push(newBox);
+            containerBox.addContent(newBox);
             place.x += size.x + (size.y*0.1);
         });
-        convertBoxToContainer(containerBox, boxes);
         place.y += textSize;
     });
     //Watermark
@@ -131,30 +125,12 @@ function createBox(content, position, size){
     return box;
 }
 
-//TODO: refactor so this method is easier to use
-//maybe put a parameter in createBox() for the container to add it to
-function convertBoxToContainer(box, boxes){
-    box.content = boxes;
-    box.type = TYPE_CONTAINER;
-    box.position = new Vector2(350,350);
-    box.size = new Vector2(0,0);
-    for(let i = 0; i < boxes.length; i++){
-        let b = boxes[i];
-        let p = b.position;
-        let s = b.size;
-        if (p.x < box.position.x){
-            box.position.x = p.x;
-        }
-        if (p.y < box.position.y){
-            box.position.y = p.y;
-        }
-        if (p.x + s.x > box.position.x + box.size.x){
-            box.size.x = (p.x + s.x) - box.position.x;
-        }
-        if (p.y + s.y > box.position.y + box.size.y){
-            box.size.y = (p.y + s.y) - box.position.y;
-        }
-    }
+function createContainer(){
+    let box = new Box(
+        []
+    );
+    boxSet.boxes.push(box);
+    return box;
 }
 
 function getBox(pos, onlySelectable){

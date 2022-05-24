@@ -21,6 +21,35 @@ class Box{
     selectable(pos){
         return this.activate || this.type == TYPE_CONTAINER;
     }
+
+    addContent(content){
+        if (this.type != TYPE_CONTAINER){
+            console.error("Cannot add content to non container type!", this.type);
+        }
+        this.content.push(content);
+        this._update();
+    }
+    _update(){
+        this.position = this.content[0]?.position ?? new Vector2(-1,-1);
+        this.size = this.content[0]?.size ?? new Vector2(0,0);
+        for(let i = 0; i < this.content.length; i++){
+            let b = this.content[i];
+            let p = b.position;
+            let s = b.size;
+            if (p.x < this.position.x){
+                this.position.x = p.x;
+            }
+            if (p.y < this.position.y){
+                this.position.y = p.y;
+            }
+            if (p.x + s.x > this.position.x + this.size.x){
+                this.size.x = (p.x + s.x) - this.position.x;
+            }
+            if (p.y + s.y > this.position.y + this.size.y){
+                this.size.y = (p.y + s.y) - this.position.y;
+            }
+        }
+    }
 }
 
 function getContentType(content){
