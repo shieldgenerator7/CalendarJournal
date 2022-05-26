@@ -8,179 +8,179 @@ let symbolSet = {
     symbols: [
         {
             name: "fruit",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "vegetable",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "language",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "call",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "earlyWake",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "earlyWakeAlarm",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "earlyBed",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "teeth",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "antifungal",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "washClothes",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "washBed",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "comb",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "cook",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "litterpan",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "plant",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "showerShampoo",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "trash",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "trim",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "draw",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "write",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "shopping",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "help",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "money",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "alarmClock",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "organize",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "mail",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "protest",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "doctor",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "cat",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "youtube",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "twitter",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "facebook",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "chocolate",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "icecream",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "candy",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "fastfood",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "pizza",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "lounge",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "porn",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "sighting",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "explore",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "walk",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "run",
-            icon: {},
+            imageURL: "",
         },
         {
             name: "bike",
-            icon: {},
+            imageURL: "",
         }
     ],
 };
@@ -190,6 +190,7 @@ let symbols = [];//dictionary mapped from symbol name to symbol object
 let symbolNames = [];//a list of name of all symbols
 
 function initSymbols(){
+    validateSymbolSet(symbolSet);
     symbolSet.symbols.forEach((symbol, i) => {
         loadSymbol(symbol);
         symbols[symbol.name] = symbol;
