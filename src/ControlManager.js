@@ -45,17 +45,5 @@ function handleFiles(fileNames){//...fileNames){
     //if (fileNames.length == 1 && fileNames[0] instanceof FileList){
         fileNames = [...fileNames];
     //}
-    //fileNames.forEach(uploadFile);
-    fileNames.forEach(previewFile);
-}
-function previewFile(file) {
-    console.log("previewFile");
-    //2022-05-26: copied from https://www.smashingmagazine.com/2018/01/drag-drop-file-uploader-vanilla-js/
-    let reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = function() {
-        let img = document.createElement('img');
-        img.src = reader.result;
-        document.getElementById('pnlEntry').appendChild(img);
-    }
+    fileNames.forEach(uploadSymbol);
 }

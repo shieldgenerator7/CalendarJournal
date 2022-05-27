@@ -231,6 +231,29 @@ function loadSymbol(symbol, fileName){
     symbol.imageURL = undefined;
 }
 
+function uploadSymbol(file){
+    console.log("uploadSymbol",file);
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = function() {
+        //Get values
+        let symbolName = file.name.split(".")[0];
+        //Create object
+        let symbol = {
+            name: symbolName,
+            imageURL: reader.result,
+            icon: new Image(),
+        }
+        symbol.icon.src = symbol.imageURL;
+        //Add symbol to symbolSet
+        symbolSet.addSymbol(symbol);
+        symbols[symbolName] = symbol;
+        symbolNames.push(symbolName);
+        //Update UI
+        updateSymbolBank();
+    }
+}
+
 function createSymbolSet(setName, symbolNames){
     let symbolSet = {
         name: setName,
