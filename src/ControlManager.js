@@ -45,5 +45,10 @@ function handleFiles(fileNames){//...fileNames){
     //if (fileNames.length == 1 && fileNames[0] instanceof FileList){
         fileNames = [...fileNames];
     //}
-    fileNames.forEach(uploadSymbol);
+    files
+        .filter(file => file.type == "image/png")
+        .forEach(uploadSymbol);
+    files
+        .filter(file => file.type == "text/plain")
+        .forEach(uploadSymbolSet);
 }

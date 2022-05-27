@@ -265,3 +265,14 @@ function createSymbolSet(setName, symbolNames){
     });
     return symbolSet;
 }
+
+function uploadSymbolSet(file){
+    let reader = new FileReader();
+    reader.readAsText(file);
+    reader.onloadend = function() {
+        let json = reader.result;
+        symbolSet = JSON.parse(json);
+        initSymbols();
+        updateSymbolBank();
+    }
+}
