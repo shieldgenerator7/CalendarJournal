@@ -55,7 +55,6 @@ function loadSymbol(symbol, fileName){
 }
 
 function uploadSymbol(file){
-    console.log("uploadSymbol",file);
     let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = function() {
