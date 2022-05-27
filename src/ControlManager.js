@@ -34,13 +34,25 @@ function handleDrop(e) {
     let files = dt.files;
     handleFiles(files);
 }
+const imageFileTypes = [
+    "image/png",
+];
+const symbolSetFileTypes = [
+    "text/plain",
+    "application/json",
+];
 function handleFiles(files){
     //2022-05-26: copied from https://www.smashingmagazine.com/2018/01/drag-drop-file-uploader-vanilla-js/
     files = [...files];
-    files
-        .filter(file => file.type == "image/png")
-        .forEach(uploadSymbol);
-    files
-        .filter(file => file.type == "text/plain")
-        .forEach(uploadSymbolSet);
+    files.forEach((file)=>{
+        if (imageFileTypes.includes(file.type)){
+            uploadSymbol(file);
+        }
+        else if (symbolSetFileTypes.includes(file.type)){
+            uploadSymbolSet(file);
+        }
+        else{
+            console.warning("Unknown file type:",file.type,"filename:",file.name);
+        }
+    });
 }
