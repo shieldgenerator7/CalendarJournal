@@ -15,3 +15,10 @@ function setEditBox(box){
     selection.editBox = box;
     selection.symbolFunction = box?.symbolFunction;
 }
+
+function clearSelections(){
+    selection.mouseOverBox = undefined;
+    selection.editBox = undefined;
+    selection.symbolFunction = undefined;
+    selection.record = undefined;
+}

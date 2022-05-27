@@ -87,6 +87,10 @@ function btnImportStarterSymbolSetClicked(){
 }
 
 function btnCopyClicked(){
+    //Prepare for clean drawing
+    clearSelections();
+    repaintEntryCanvas();
+    //Copy
     //2022-05-23: copied from https://stackoverflow.com/a/57546936/2336212
     let canvas = $("cvsEntry");
     canvas.toBlob(function(blob) {
