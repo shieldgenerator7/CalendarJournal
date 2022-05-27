@@ -1,30 +1,28 @@
 "use strict";
 
+const jsonStrRecord = [
+    "text",
+]
+
 class Record{
     constructor(){
+        this.text = "";
+        //unsaved
         this.body = [];
     }
 
     isValid(){
-        return this.body?.length > 0;
+        return true && this.text;
     }
 
-    addPart(part){
-        if (this.body.length > 0){
-            let lastPart = this.body[this.body.length - 1];
-            let similar = part.includes(lastPart) || lastPart.includes(part);
-            let symbol = isPartSymbol(part) || isPartSymbol(lastPart);
-            if (similar && !symbol){
-                lastPart = part;
-                this.body[this.body.length - 1] = lastPart;
-            }
-            else{
-                this.body.push(part);
-            }
-        }
-        else{
-            this.body.push(part);
-        }
+    //Split text into parts, and store them in body
+    updateBody(){
+        this.body = [];
+        //symbol format: "...text... [symbolName] ...text..."
+        let symbolParts = this.text
+            .split(/[\[\]]+/);
+        this.body = this.body.concat(symbolParts);
+        this.cleanParts();
     }
 
     cleanParts(){
@@ -36,8 +34,10 @@ class Record{
 }
 
 function isPartSymbol(part){
-    return part.startsWith("[") && part.endsWith("]");
+    return part.startsWith("[") && part.endsWith("]")
+        || symbols[part];
 }
-function partToSymbol(part){
+//TODO: deprecate this?
+function partToSymbolName(part){
     return part.slice(1).slice(0,-1);
 }

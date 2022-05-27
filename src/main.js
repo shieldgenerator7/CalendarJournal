@@ -21,7 +21,6 @@ function initCalendarJournal(){
         if (e.keyCode === 13){
             //TODO: make method to create new record and edit it
             selection.record = entry.addNewRecord();
-            selection.record.addPart("");
             $("txtRecord").focus();
             entry.cleanRecords();
             updateEntryFields(entry);
@@ -70,7 +69,8 @@ function txtRecordChanged(){
     if (!selection.record){
         selection.record = entry.addNewRecord();
     }
-    selection.record.addPart($("txtRecord").value);
+    selection.record.text = $("txtRecord").value;
+    selection.record.updateBody();
     updateEntryFields(entry);
     generateBoxSet(entry);
     repaintEntryCanvas();
