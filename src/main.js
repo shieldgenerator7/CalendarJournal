@@ -29,6 +29,14 @@ function initCalendarJournal(){
             repaintEntryCanvas();
         }
     });
+    //Drop image event handlers// Prevent default drag behaviors
+    //2022-05-26: copied from https://www.smashingmagazine.com/2018/01/drag-drop-file-uploader-vanilla-js/
+    let pnlEntry = $("pnlEntry");
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        pnlEntry.addEventListener(eventName, preventDefaults, false);
+        document.body.addEventListener(eventName, preventDefaults, false);
+    })
+    pnlEntry.addEventListener('drop', handleDrop, false);
     //
     updateEntryFields(entry);
     generateBoxSet(entry);
