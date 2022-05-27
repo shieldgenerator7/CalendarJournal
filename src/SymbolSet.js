@@ -3,7 +3,18 @@
 const TEMPLATE_SYMBOL = {
     name: "template",
     imageURL: undefined,//instances are required to have an actual imageURL
+    //not saved
+    icon: undefined,//actual image that can be drawn on canvas
 }
+
+const jsonStrSymbolSet = [
+    //Symbol Set
+    "name",
+    "symbols",
+    //Symbol
+    "name",
+    "imageURL",
+]
 
 class SymbolSet{
     constructor(name){

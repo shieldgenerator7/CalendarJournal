@@ -14,6 +14,8 @@ let symbolNames = [];//a list of name of all symbols
 
 function initSymbols(){
     validateSymbolSet(symbolSet);
+    symbols = [];
+    symbolNames = [];
     symbolSet.symbols.forEach((symbol, i) => {
         loadSymbol(symbol);
         symbols[symbol.name] = symbol;
@@ -41,19 +43,14 @@ function createSymbol(symbolName, fileName){
     return symbol;
 }
 
-function loadSymbol(symbol, fileName){
+function loadSymbol(symbol){
     //Error checking
     if(!symbol){
         console.error(`Invalid symbol!: ${symbol}`);
     }
-    //Defaults
-    fileName ??= SPRITE_DIR.concat(symbol.name, ".png");
     //Load object
-    symbol.fileName = fileName;
     symbol.icon = new Image();
-    symbol.icon.src = fileName;
-    //TODO: set imageURL (temporary measure before custom symbols)
-    symbol.imageURL = undefined;
+    symbol.icon.src = symbol.imageURL;
 }
 
 function uploadSymbol(file){

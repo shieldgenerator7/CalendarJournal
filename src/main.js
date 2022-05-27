@@ -97,7 +97,7 @@ function btnCopyClicked(){
 
 function btnCopySymbolSetClicked(){
     //2022-05-23: copied from https://stackoverflow.com/a/57546936/2336212
-    let json = JSON.stringify(symbolSet, undefined, 1);
+    let json = JSON.stringify(symbolSet, jsonStrSymbolSet, 1);
     navigator.clipboard.writeText(json);
 }
 
