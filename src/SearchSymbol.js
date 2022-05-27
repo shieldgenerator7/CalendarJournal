@@ -2,10 +2,12 @@
 
 let searchResults = {
     query: undefined,
-    symbolNames: [],
+    symbols: [],
 }
 
 function filterSymbolNames(query){
     searchResults.query = query;
-    searchResults.symbolNames = symbolNames.filter(name=>name.includes(query));
+    searchResults.symbols = symbolSet.symbols.filter(
+        symbol => !query || symbol.name.includes(query)
+    );
 }

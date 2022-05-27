@@ -12,16 +12,14 @@ function updateEntryFields(entry){
 
 function updateSymbolBank(){
     let symbolBank = $("divBankSymbol");
-    let symbolNameList = (searchResults.query?.trim())
-        ? searchResults.symbolNames
-        : symbolNames;
-    let buttonString = symbolNameList
-        .map(name => createSymbolButtonString(name))
+    let buttonString = searchResults.symbols
+        .map(symbol => createSymbolButtonString(symbol))
         .join("");
     symbolBank.innerHTML = buttonString;
 }
 
-function createSymbolButtonString(symbolName){
+function createSymbolButtonString(symbol){
+    let symbolName = symbol.name;
     return ""+
         `<button id="btnSymbol_${symbolName}" class="symbolButton"
             title="${symbolName}"
@@ -30,7 +28,7 @@ function createSymbolButtonString(symbolName){
                 btnSymbolClicked('${symbolName}');
             "
         >
-            <img src="src/Assets/Sprites/${symbolName}.png" />
+            <img src="${symbol.imageURL}" />
         </button>`;
 }
 

@@ -9,20 +9,15 @@ let symbolSet = {
 };
 
 let symbols = [];//dictionary mapped from symbol name to symbol object
-//TODO: deprecate symbolNames
-let symbolNames = [];//a list of name of all symbols
 
 function initSymbols(){
     validateSymbolSet(symbolSet);
     symbols = [];
-    symbolNames = [];
     symbolSet.symbols.forEach((symbol, i) => {
         loadSymbol(symbol);
         symbols[symbol.name] = symbol;
-        symbolNames.push(symbol.name);
     });
-    //TODO: remove symbolNames
-    symbolNames.sort();
+    filterSymbolNames();
 }
 
 function createSymbol(symbolName, fileName){
@@ -69,12 +64,12 @@ function uploadSymbol(file){
         //Add symbol to symbolSet
         symbolSet.addSymbol(symbol);
         symbols[symbolName] = symbol;
-        symbolNames.push(symbolName);
         //Update UI
         updateSymbolBank();
     }
 }
 
+//TODO: deprecate createSymbolSet()
 function createSymbolSet(setName, symbolNames){
     let symbolSet = {
         name: setName,
