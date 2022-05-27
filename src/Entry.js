@@ -94,9 +94,10 @@ class Entry{
 
     cleanRecords(){
         //Remove empty records
-        this.records = this.records.filter(record=>record?.isValid());
-        //Remove empty parts from records
-        this.records.forEach((record) => record.cleanParts());
+        this.records = this.records.filter(
+            record => record?.isValid()
+            || selection.record && selection.record == record
+        );
     }
 }
 

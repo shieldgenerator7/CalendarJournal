@@ -17,19 +17,12 @@ class Record{
 
     //Split text into parts, and store them in body
     updateBody(){
-        this.body = [];
         //symbol format: "...text... [symbolName] ...text..."
-        let symbolParts = this.text
-            .split(/[\[\]]+/);
-        this.body = this.body.concat(symbolParts);
-        this.cleanParts();
-    }
+        this.body = this.text
+            .split(/[\s\[\]]+/)//split on spaces, [, ],
+            .map(part => part?.trim())
+            .filter(part => part);
 
-    cleanParts(){
-        this.body = this.body.map(part =>
-            (typeof part === "string") ?part.trim() :part
-        );
-        this.body = this.body.filter(part=>part);
     }
 }
 

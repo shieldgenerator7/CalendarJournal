@@ -138,7 +138,7 @@ function generateBoxSet(entry, textSize, canvasSize){
                 );
             }
             containerBox.addContent(newBox);
-            place.x += size.x + (size.y*0.1);
+            place.x += size.x + (size.y*0.3);
         });
         place.y += textSize;
     });
