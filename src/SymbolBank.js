@@ -65,6 +65,8 @@ function uploadSymbol(file){
         symbolSet.addSymbol(symbol);
         symbols[symbolName] = symbol;
         //Update UI
+        symbolSet.alphabetizeSymbols();
+        filterSymbolNames();
         updateSymbolBank();
     }
 }
