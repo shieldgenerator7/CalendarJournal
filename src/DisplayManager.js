@@ -7,7 +7,12 @@ function $(elementId) {
 function updateEntryFields(entry){
     $("txtTimeWake").value = entry.wake.time+":00";
     $("txtTimeBed").value = entry.bed.time+":00";
-    $("txtRecord").value = selection.record?.body?.[selection.record.body.length-1] ?? "";
+    let txtRecord = $("txtRecord");
+    txtRecord.value = selection.record?.body?.[selection.record.body.length-1] ?? "";
+    txtRecord.disabled = !selection.record;
+    txtRecord.hidden = !selection.record;
+    txtRecord.style.setProperty("left",selection.editBox?.position.x);
+    txtRecord.style.setProperty("top",selection.editBox?.position.y);
 }
 
 function updateSymbolBank(){
