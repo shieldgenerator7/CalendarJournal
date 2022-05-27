@@ -42,25 +42,6 @@ p {
 .txtRecord{
     width: 350px;
     height: 32px;
-    position: absolute;
-    left: 0px;
-    top: 320px;
-    background-color: transparent;
-    border-color: transparent;
-    color: transparent;
-    outline-color: transparent;
-}
-.txtRecord:hover{
-    background-color: transparent;
-    border-color: transparent;
-    color: transparent;
-    outline-color: transparent;
-}
-.txtRecord:focus{
-    background-color: transparent;
-    border-color: transparent;
-    color: transparent;
-    outline-color: transparent;
 }
 
 .txtSearchSymbols{

@@ -22,13 +22,6 @@
                 onpaste="txtTimeChanged();"
             ></input>
             <br>
-            <input id="txtRecord" class="txtRecord" type="text"
-                onchange="txtRecordChanged();"
-                oninput="txtRecordChanged();"
-                onpaste="txtRecordChanged();"
-                onblur="entry.cleanRecords();"
-            ></input>
-            <br>
             <input id="txtSearchSymbols" class="txtSearchSymbols" type="text"
                 placeholder="Search"
                 onchange="txtSearchSymbolsChanged();"
@@ -57,6 +50,15 @@
         <!-- Canvas -->
         <div class="divCanvas" oncontextmenu="return false;">
             <canvas id="cvsEntry"></canvas>
+            <br>
+            <br>
+            <input id="txtRecord" class="txtRecord" type="text" disabled
+                onchange="txtRecordChanged();"
+                oninput="txtRecordChanged();"
+                onpaste="txtRecordChanged();"
+                onblur="entry.cleanRecords();"
+            ></input>
+            <br>
             <br>
             <button id="btnCopy" onclick="btnCopyClicked()">
                 Copy

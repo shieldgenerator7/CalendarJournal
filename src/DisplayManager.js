@@ -10,9 +10,6 @@ function updateEntryFields(entry){
     let txtRecord = $("txtRecord");
     txtRecord.value = selection.record?.text || "";
     txtRecord.disabled = !selection.record;
-    txtRecord.hidden = !selection.record;
-    txtRecord.style.setProperty("left",selection.editBox?.position.x);
-    txtRecord.style.setProperty("top",selection.editBox?.position.y);
 }
 
 function updateSymbolBank(){
