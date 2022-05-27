@@ -77,7 +77,7 @@ function txtRecordChanged(){
 }
 
 function btnImportStarterSymbolSetClicked(){
-    let fileName = "src/Assets/Json/StarterSymbolSet.txt";
+    let fileName = "src/Assets/Json/StarterSymbolSet.json";
     //2022-05-26: copied from https://stackoverflow.com/a/46129280/2336212
     fetch(fileName)
         .then(response => response.text())
