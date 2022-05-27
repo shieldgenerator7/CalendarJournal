@@ -19,6 +19,8 @@ function initSymbols(){
         symbols[symbol.name] = symbol;
         symbolNames.push(symbol.name);
     });
+    //TODO: remove symbolNames
+    symbolNames.sort();
 }
 
 function createSymbol(symbolName, fileName){
@@ -100,5 +102,7 @@ function uploadSymbolSet(file){
 function importSymbolSet(json){
     symbolSet = JSON.parse(json);
     initSymbols();
+    symbolSet.alphabetizeSymbols();
     updateSymbolBank();
 }
+// }

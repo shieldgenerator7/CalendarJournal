@@ -16,7 +16,13 @@ class SymbolSet{
     }
 
     filterSymbols(query){
-        return this.symbols.filter(symbol=>symbol.name.includes(query));
+        return this.symbols.filter(symbol => symbol.name.includes(query));
+    }
+
+    alphabetizeSymbols(){
+        this.symbols.sort(
+            (a, b) => a.name.localeCompare(b.name)
+        );
     }
 }
 
