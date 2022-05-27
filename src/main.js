@@ -76,6 +76,16 @@ function txtRecordChanged(){
     repaintEntryCanvas();
 }
 
+function btnImportStarterSymbolSetClicked(){
+    let fileName = "src/Assets/Json/StarterSymbolSet.txt";
+    //2022-05-26: copied from https://stackoverflow.com/a/46129280/2336212
+    fetch(fileName)
+        .then(response => response.text())
+        .then(json => importSymbolSet(json));
+    //Remove the button
+    $("btnImportStarterSymbolSet").hidden = true;
+}
+
 function btnCopyClicked(){
     //2022-05-23: copied from https://stackoverflow.com/a/57546936/2336212
     let canvas = $("cvsEntry");

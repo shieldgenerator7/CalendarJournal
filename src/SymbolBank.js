@@ -93,8 +93,12 @@ function uploadSymbolSet(file){
     reader.readAsText(file);
     reader.onloadend = function() {
         let json = reader.result;
-        symbolSet = JSON.parse(json);
-        initSymbols();
-        updateSymbolBank();
+        importSymbolSet(json);
     }
+}
+
+function importSymbolSet(json){
+    symbolSet = JSON.parse(json);
+    initSymbols();
+    updateSymbolBank();
 }
