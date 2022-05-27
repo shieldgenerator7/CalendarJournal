@@ -15,12 +15,12 @@ function filterSymbolNames(query){
         return;
     }
     //Sanitize query pass 2
-    let queries = query.split(" ").filter(str => str?.trim());
+    let queries = query.toLowerCase().split(" ").filter(str => str?.trim());
     query = queries.join(" ");
     //Save sanitized query
     searchResults.query = query;
     //Search using query
     searchResults.symbols = symbolSet.symbols.filter(
-        symbol => queries.some(q => symbol.name.includes(q))
+        symbol => queries.some(q => symbol.name.toLowerCase().includes(q))
     );
 }
