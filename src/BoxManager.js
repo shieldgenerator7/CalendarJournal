@@ -100,6 +100,7 @@ function generateBoxSet(entry, textSize, canvasSize){
         place2.y += textSize;
     });
     //Draw records
+    let recordLimitX = canvasSize - (textSize*1);
     entry.records.forEach((record, i) => {
         place.x = 0;
         containerBox = createContainer(
@@ -140,7 +141,19 @@ function generateBoxSet(entry, textSize, canvasSize){
             containerBox.addContent(newBox);
             place.x += size.x + (size.y*0.3);
         });
-        place.y += textSize;
+        //Scale down record box if its too wide
+        if (containerBox.size.x > recordLimitX){
+            let scaleFactor = recordLimitX / containerBox.size.x;
+            let smallTextSize = boxSet.textSize * scaleFactor;
+            containerBox.content.forEach((box, i) => {
+                box.size = box.size.scale(scaleFactor);
+                box.position.x *= scaleFactor;
+                box.textSize = smallTextSize;
+            });
+            containerBox._update();
+        }
+        //
+        place.y += containerBox.size.y;
     });
     //New record box
     place.x = 0;

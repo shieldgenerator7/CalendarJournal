@@ -14,6 +14,7 @@ class Box{
         this.type = getContentType(content);
         this.activate = undefined;//function(mpos){ return false; };
         this.symbolFunction = undefined;//function(symbol){};
+        this.textSize = undefined;//used to override standard textSize if necessary
     }
 
     contains(pos){
