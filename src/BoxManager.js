@@ -101,6 +101,8 @@ function generateBoxSet(entry, textSize, canvasSize){
     });
     //Draw records
     let recordLimitX = canvasSize - (textSize * 1);
+    let recordLimitY = canvasSize - (textSize * 0.5);
+    let recordBoxList = [];
     entry.records.forEach((record, i) => {
         place.x = 0;
         containerBox = createContainer(
@@ -110,6 +112,7 @@ function generateBoxSet(entry, textSize, canvasSize){
                 boxSet.textSize
             )
         );
+        recordBoxList.push(containerBox);
         containerBox.activate = ()=>{
             selection.record = record;
             $("txtRecord").focus();
@@ -155,6 +158,32 @@ function generateBoxSet(entry, textSize, canvasSize){
         //
         place.y += containerBox.size.y;
     });
+    //Scale down record boxes if there's too many rows
+    let firstRow = recordBoxList[0];
+    let lastRow = recordBoxList.slice(-1)[0];
+    if (lastRow?.position.y + lastRow?.size.y > recordLimitY){
+        let maxTextSize = (recordLimitY - firstRow.position.y) / recordBoxList.length;
+        recordBoxList.forEach((container, i) => {
+            if (container.size.y > maxTextSize){
+                let scaleFactor = maxTextSize / container.size.y;
+                container.content.forEach((box, j) => {
+                    box.size = box.size.scaleProportionY(maxTextSize);
+                    box.position.x *= scaleFactor;
+                    box.textSize = maxTextSize;
+                });
+                container._update();
+            }
+        });
+        let placeRow = new Vector2(0, firstRow.position.y);
+        recordBoxList.forEach((container, i) => {
+            container.position = placeRow.copy();
+            container.content.forEach((box, j) => {
+                box.position.y = container.position.y;
+            });
+            placeRow.y += container.size.y;
+        });
+        place = placeRow.copy();
+    }
     //New record box
     place.x = 0;
     containerBox = createContainer(

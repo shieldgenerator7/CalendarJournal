@@ -20,6 +20,16 @@ class Vector2 {
 		return new Vector2(this.x * m, this.y * m);
 	}
 
+	scaleProportionX(newX){
+		let factor = (newX / this.x);
+		return this.scale(factor);
+	}
+
+	scaleProportionY(newY){
+		let factor = (newY / this.y);
+		return this.scale(factor);
+	}
+
 	copy(){
 		let v = new Vector2(this.x, this.y);
 		return v;
