@@ -138,12 +138,13 @@ function repaintBoxImage(box, boxSet, ctx){
     if (!box){
         console.error("Must pass in a box!", box);
     }
+    let textSize = box.textSize ?? boxSet.textSize;
     ctx.drawImage(
         box.content,
         box.position.x,
         box.position.y,
-        boxSet.textSize,
-        boxSet.textSize
+        textSize,
+        textSize
     );
 }
 
