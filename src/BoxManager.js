@@ -52,10 +52,7 @@ function generateBoxSet(entry, textSize, canvasSize){
     size = new Vector2(textSize, textSize);
     let containerBox = createContainer(
         place,
-        new Vector2(
-            boxSet.canvasSize - boxSet.textSize,
-            boxSet.textSize
-        )
+        new Vector2(badgeLimitX, textSize)
     );
     containerBox.symbolFunction = (symbol)=>{
         entry.addBadge(symbol);
@@ -73,6 +70,7 @@ function generateBoxSet(entry, textSize, canvasSize){
             place.y += textSize;
         }
     });
+    containerBox.size.x = badgeLimitX;
     place.y += textSize;
     //Place pleasures
     let place2 = new Vector2(
@@ -99,6 +97,7 @@ function generateBoxSet(entry, textSize, canvasSize){
         containerBox.addContent(newBox);
         place2.y += textSize;
     });
+    containerBox.size.y = canvasSize;
     //Draw records
     let recordLimitX = canvasSize - (textSize * 1);
     let recordLimitY = canvasSize - (textSize * 0.5);
@@ -184,6 +183,10 @@ function generateBoxSet(entry, textSize, canvasSize){
         });
         place = placeRow.copy();
     }
+    //Fill record boxes to full width
+    recordBoxList.forEach((container, i) => {
+        container.size.x = recordLimitX;
+    });
     //New record box
     place.x = 0;
     containerBox = createContainer(
