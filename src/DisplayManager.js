@@ -5,8 +5,8 @@ function $(elementId) {
 }
 
 function updateEntryFields(entry){
-    $("txtTimeWake").value = entry.wake.time+":00";
-    $("txtTimeBed").value = entry.bed.time+":00";
+    $("txtTimeWake").value = entry.wake.time + ":00";
+    $("txtTimeBed").value = entry.bed.time + ":00";
     let txtRecord = $("txtRecord");
     txtRecord.value = selection.record?.text || "";
     txtRecord.disabled = !selection.record;
@@ -45,9 +45,9 @@ function repaintEntryCanvas(boxSet){
     canvas.height = boxSet.canvasSize;
     let size = boxSet.canvasSize;
     //Clear rect
-    ctx.clearRect(0,0,size,size);
+    ctx.clearRect(0, 0, size, size);
     ctx.fillStyle = "#FFFFFF";
-    ctx.fillRect(0,0,size,size);
+    ctx.fillRect(0, 0, size, size);
     //Hover lines
     repaintHoverLines(ctx);
     //Selection lines
@@ -79,21 +79,21 @@ function repaintEntryCanvas(boxSet){
     ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.arc(
-        198*textSize/30,//x
-        20*textSize/30,//y
-        22*textSize/30,//radius
+        198 * textSize / 30,//x
+        20 * textSize / 30,//y
+        22 * textSize / 30,//radius
         0,
-        2*Math.PI
+        2 * Math.PI
     );
     ctx.stroke();
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.arc(
-        198*textSize/30,//x
-        20*textSize/30,//y
-        22*textSize/30,//radius
-        -Math.PI/2,
-        Math.PI/2,
+        198 * textSize / 30,//x
+        20 * textSize / 30,//y
+        22 * textSize / 30,//radius
+        -Math.PI / 2,
+        Math.PI / 2,
         entry.wake.side == AFTER
     );
     ctx.stroke();
@@ -101,21 +101,21 @@ function repaintEntryCanvas(boxSet){
     ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.arc(
-        248*textSize/30,//x
-        20*textSize/30,//y
-        22*textSize/30,//radius
+        248 * textSize / 30,//x
+        20 * textSize / 30,//y
+        22 * textSize / 30,//radius
         0,
-        2*Math.PI
+        2 * Math.PI
     );
     ctx.stroke();
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.arc(
-        248*textSize/30,//x
-        20*textSize/30,//y
-        22*textSize/30,//radius
-        -Math.PI/2,
-        Math.PI/2,
+        248 * textSize / 30,//x
+        20 * textSize / 30,//y
+        22 * textSize / 30,//radius
+        -Math.PI / 2,
+        Math.PI / 2,
         entry.bed.side == AFTER
     );
     ctx.stroke();

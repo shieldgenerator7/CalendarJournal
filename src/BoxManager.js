@@ -21,8 +21,8 @@ function generateBoxSet(entry, textSize, canvasSize){
     boxSet.canvasSize = canvasSize;
     //Initialization
     let str = "";
-    let place = new Vector2(0,0);
-    let size = new Vector2(textSize,textSize);
+    let place = new Vector2(0, 0);
+    let size = new Vector2(textSize, textSize);
     let box = undefined;
     //Header text date
     str = `${entry.date}`;
@@ -39,7 +39,7 @@ function generateBoxSet(entry, textSize, canvasSize){
     place.x += size.x;
     //Header text bed time
     place.x += getTextSize(" ").x;
-    str = `${(""+entry.bed.time).padStart(2,"0")}`;
+    str = `${("" + entry.bed.time).padStart(2, "0")}`;
     size = new Vector2(getTextSize(str).x, textSize);
     box = createBox(str, place, size);
     box.activate = (mpos) => entry.setBedTime();
@@ -48,7 +48,7 @@ function generateBoxSet(entry, textSize, canvasSize){
     //Place badges
     place.x = 0;
     place.y += textSize * 0.3;
-    let badgeLimitX = canvasSize - (textSize*1);
+    let badgeLimitX = canvasSize - (textSize * 1);
     size = new Vector2(textSize, textSize);
     let containerBox = createContainer(
         place,
@@ -100,7 +100,7 @@ function generateBoxSet(entry, textSize, canvasSize){
         place2.y += textSize;
     });
     //Draw records
-    let recordLimitX = canvasSize - (textSize*1);
+    let recordLimitX = canvasSize - (textSize * 1);
     entry.records.forEach((record, i) => {
         place.x = 0;
         containerBox = createContainer(
@@ -184,7 +184,7 @@ function generateBoxSet(entry, textSize, canvasSize){
     let smallTextSize = textSize / 2;
     let font = `${smallTextSize}px Consolas`;
     str = "initially generated with CalendarJournal";
-    place = new Vector2(0, canvasSize - (smallTextSize*1.2));
+    place = new Vector2(0, canvasSize - (smallTextSize * 1.2));
     size = new Vector2(getTextSize(str, font).x, smallTextSize);
     box = createBox(str, place, size);
     box.textSize = smallTextSize;
@@ -210,7 +210,7 @@ function getBox(pos, onlySelectable){
     onlySelectable ??= true;
     let boxes = getBoxes(pos);
     if (onlySelectable){
-        boxes = boxes.filter(box=>box.selectable());
+        boxes = boxes.filter(box => box.selectable());
     }
     return boxes[0];
 }
