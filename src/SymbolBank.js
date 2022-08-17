@@ -3,21 +3,34 @@
 const IMAGE_DIR = "src/Assets/Images/";
 const SPRITE_DIR = "src/Assets/Sprites/";
 
-let symbolSet = {
-    name: "StarterSymbols",
-    symbols: [],
-};
+let symbolSetList = [];
+
+let miscSymbolSet;//symbolSet where all loose symbols go
 
 let symbols = [];//dictionary mapped from symbol name to symbol object
 
-function initSymbols(){
-    validateSymbolSet(symbolSet);
-    symbols = [];
-    symbolSet.symbols.forEach((symbol, i) => {
-        loadSymbol(symbol);
-        symbols[symbol.name] = symbol;
+function initSymbolBank(){
+    let miscSymbolSet = {
+        name: "MiscSymbolSet",
+        symbols: [],
+    };
+    addSymbolSet(miscSymbolSet);
+    refreshSymbolBank();
+    updateSymbolBank();
+}
+
+function refreshSymbolBank(){
+    //Validate symbolSets
+    symbolSetList = symbolSetList.filter(symbolSet => validateSymbolSet(symbolSet));
+    //Update symbols list
+    symbolSetList.forEach(symbolSet => {
+        symbolSet.symbols.forEach((symbol, i) => {
+            loadSymbol(symbol);
+            symbols[symbol.name] = symbol;
+        });
     });
-    filterSymbolNames();
+    //Filter symbol names
+    filterSymbolNames(searchResults.query);//TODO: make callback for when symbol bank gets updated
 }
 
 function createSymbol(symbolName, fileName){
@@ -62,11 +75,10 @@ function uploadSymbol(file){
         }
         symbol.icon.src = symbol.imageURL;
         //Add symbol to symbolSet
-        symbolSet.addSymbol(symbol);
-        symbols[symbolName] = symbol;
+        miscSymbolSet.addSymbol(symbol);
         //Update UI
-        symbolSet.alphabetizeSymbols();
-        filterSymbolNames();
+        miscSymbolSet.alphabetizeSymbols();
+        refreshSymbolBank();
         updateSymbolBank();
     }
 }
@@ -94,9 +106,14 @@ function uploadSymbolSet(file){
 }
 
 function importSymbolSet(json){
-    symbolSet = JSON.parse(json);
-    initSymbols();
+    let symbolSet = JSON.parse(json);
+    validateSymbolSet(symbolSet);
     symbolSet.alphabetizeSymbols();
+    addSymbolSet(symbolSet);
+}
+
+function addSymbolSet(symbolSet){
+    symbolSetList.push(symbolSet);
+    refreshSymbolBank();
     updateSymbolBank();
 }
-// }

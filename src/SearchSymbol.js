@@ -11,7 +11,7 @@ function filterSymbolNames(query){
     //Early exit
     if (!query){
         searchResults.query = query;
-        searchResults.symbols = symbolSet.symbols.slice();//shallow copy the array
+        searchResults.symbols = getSymbolsWithName("");
         return;
     }
     //Sanitize query pass 2
@@ -20,7 +20,15 @@ function filterSymbolNames(query){
     //Save sanitized query
     searchResults.query = query;
     //Search using query
-    searchResults.symbols = symbolSet.symbols.filter(
-        symbol => queries.some(q => symbol.name.toLowerCase().includes(q))
+    searchResults.symbols = getSymbolsWithName(queries);
+}
+
+function getSymbolsWithName(...names){
+    let symbolList = [];
+    symbolSetList.forEach(symbolSet =>
+        symbolList.concat(symbolSet.symbols.filter(
+            symbol => names.some(n => symbol.name.toLowerCase().includes(n))
+        ))
     );
+    return symbolList;
 }

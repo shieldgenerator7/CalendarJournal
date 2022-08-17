@@ -41,7 +41,7 @@ function validateSymbolSet(symbolSet){
     //Error checking
     if (!symbolSet){
         console.error(`No symbolSet!:`, symbolSet);
-        return;
+        return false;
     }
     //Prototype
     Object.setPrototypeOf(symbolSet, SymbolSet.prototype);
@@ -65,4 +65,6 @@ function validateSymbolSet(symbolSet){
             );
         }
     });
+    //Validation complete
+    return true;
 }
