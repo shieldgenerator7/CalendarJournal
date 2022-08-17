@@ -10,7 +10,7 @@ let miscSymbolSet;//symbolSet where all loose symbols go
 let symbols = [];//dictionary mapped from symbol name to symbol object
 
 function initSymbolBank(){
-    let miscSymbolSet = {
+    miscSymbolSet = {
         name: "MiscSymbolSet",
         symbols: [],
     };
