@@ -26,7 +26,7 @@ function filterSymbolNames(query){
 function getSymbolsWithName(...names){
     let symbolList = [];
     symbolSetList.forEach(symbolSet =>
-        symbolList.concat(symbolSet.symbols.filter(
+        symbolList = symbolList.concat(symbolSet.symbols.filter(
             symbol => names.some(n => symbol.name.toLowerCase().includes(n))
         ))
     );
