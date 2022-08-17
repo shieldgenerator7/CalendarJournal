@@ -75,14 +75,14 @@ function txtRecordChanged(){
     repaintEntryCanvas();
 }
 
-function btnImportStarterSymbolSetClicked(){
-    let fileName = "src/Assets/Json/StarterSymbolSet.json";
+function btnImportSymbolSetClicked(symbolSetName){
+    let fileName = `src/Assets/Json/${symbolSetName}.json`;
     //2022-05-26: copied from https://stackoverflow.com/a/46129280/2336212
     fetch(fileName)
         .then(response => response.text())
         .then(json => importSymbolSet(json));
     //Remove the button
-    $("btnImportStarterSymbolSet").hidden = true;
+    $(`btnImport${symbolSetName}`).hidden = true;
 }
 
 function btnCopyClicked(){
