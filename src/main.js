@@ -4,7 +4,11 @@
 let entry;
 
 function initCalendarJournal(){
+
+    window.onbeforeunload = cleanupCalendarJournal;
+
     initSymbolBank();
+    loadEntry();
     entry ??= new Entry();
     //
     let cvsEntry = $("cvsEntry");
@@ -39,6 +43,19 @@ function initCalendarJournal(){
     updateEntryFields(entry);
     generateBoxSet(entry);
     repaintEntryCanvas();
+}
+
+function cleanupCalendarJournal(){
+    saveEntry();
+}
+
+function saveEntry(){
+    localStorage.setItem("CalendarJournal-entry", JSON.stringify(entry));
+}
+
+function loadEntry(){
+    entry = JSON.parse(localStorage.getItem("CalendarJournal-entry")) ?? new Entry();
+    validateEntry(entry);
 }
 
 //TODO: perhaps move this to another script?
