@@ -98,6 +98,14 @@ function btnCopyClicked(){
     });
 }
 
+function btnClearClicked(){
+    if (confirm("Clear Entry?")){
+        entry = new Entry();
+        generateBoxSet(entry);
+        repaintEntryCanvas();
+    }
+}
+
 function btnCopySymbolSetClicked(){
     //2022-05-23: copied from https://stackoverflow.com/a/57546936/2336212
     let json = JSON.stringify(miscSymbolSet, jsonStrSymbolSet, 1);
