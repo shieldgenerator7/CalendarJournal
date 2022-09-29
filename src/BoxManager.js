@@ -59,7 +59,7 @@ function generateBoxSet(entry, textSize, canvasSize){
     };
     entry.badges.forEach((badge, i) => {
         let newBox = createBox(
-            symbols[badge].icon,
+            symbols[badge]?.icon ?? badge,
             place,
             size
         );
@@ -90,7 +90,7 @@ function generateBoxSet(entry, textSize, canvasSize){
     };
     entry.pleasures.forEach((pleasure, i) => {
         let newBox = createBox(
-            symbols[pleasure].icon,
+            symbols[pleasure]?.icon ?? pleasure,
             place2,
             size
         );

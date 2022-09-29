@@ -97,7 +97,12 @@ function btnImportSymbolSetClicked(symbolSetName){
     //2022-05-26: copied from https://stackoverflow.com/a/46129280/2336212
     fetch(fileName)
         .then(response => response.text())
-        .then(json => importSymbolSet(json));
+        .then(json => {
+            importSymbolSet(json);
+            //update the display
+            generateBoxSet(entry);
+            repaintEntryCanvas();
+        });
     //Remove the button
     $(`btnImport${symbolSetName}`).hidden = true;
 }
