@@ -105,3 +105,34 @@ function getCurrentTimeString(){
     let today = new Date();
     return `${today.getHours()}:${today.getMinutes()}`;
 }
+
+function validateEntry(entry){
+    //error checking
+    if (!entry){
+        console.error(`Entry is invalid object! ${entry}`);
+        return;
+    }
+    //Make sure it has correct prototype
+    Object.setPrototypeOf(entry, Entry.prototype);
+    //check date
+    entry.date ??= new Date().toISOString().slice(0, 10);
+    Object.setPrototypeOf(entry.date, Date.prototype);
+    //check start and end times
+    entry.wake ??= {
+        time: 8,
+        side: AFTER,
+    };
+    entry.bed ??= {
+        time: 23,
+        side: BEFORE,
+    };
+    //check badges and pleasures
+    entry.badges ??= [];
+    entry.pleasures ??= [];
+    //check records
+    entry.records ??= [];
+    entry.records.forEach((record, i) => {
+        Object.setPrototypeOf(record, Record.prototype);
+    });
+
+}
