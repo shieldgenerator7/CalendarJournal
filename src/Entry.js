@@ -37,15 +37,15 @@ class Entry{
     setWakeTime(timeString){
         timeString ??= getCurrentTimeString();
         let split = timeString.split(":");
-        let hour = split[0]*1;
-        let minute = split[1]*1;
-        hour = Math.clamp(hour,0,24);
-        minute = Math.clamp(minute,0,59);
+        let hour = split[0] * 1;
+        let minute = split[1] * 1;
+        hour = Math.clamp(hour, 0, 24);
+        minute = Math.clamp(minute, 0, 59);
         if (hour == 24){
             hour = 0;
         }
         if (minute >= 45){
-            this.wake.time = hour+1;
+            this.wake.time = hour + 1;
             this.wake.side = BEFORE;
         }
         else{
@@ -56,10 +56,10 @@ class Entry{
     setBedTime(timeString){
         timeString ??= getCurrentTimeString();
         let split = timeString.split(":");
-        let hour = split[0]*1;
-        let minute = split[1]*1;
-        hour = Math.clamp(hour,0,24);
-        minute = Math.clamp(minute,0,59);
+        let hour = split[0] * 1;
+        let minute = split[1] * 1;
+        hour = Math.clamp(hour, 0, 24);
+        minute = Math.clamp(minute, 0, 59);
         if (hour == 24){
             hour = 0;
         }
@@ -68,20 +68,20 @@ class Entry{
             this.bed.side = AFTER;
         }
         else{
-            this.bed.time = hour+1;
+            this.bed.time = hour + 1;
             this.bed.side = BEFORE;
         }
     }
 
     addBadge(symbol){
         if (this.badges.includes(symbol)){
-            this.badges.splice(this.badges.indexOf(symbol),1);
+            this.badges.splice(this.badges.indexOf(symbol), 1);
         }
         this.badges.push(symbol);
     }
     addPleasure(symbol){
         if (this.pleasures.includes(symbol)){
-            this.pleasures.splice(this.pleasures.indexOf(symbol),1);
+            this.pleasures.splice(this.pleasures.indexOf(symbol), 1);
         }
         this.pleasures.push(symbol);
     }
@@ -96,7 +96,7 @@ class Entry{
         //Remove empty records
         this.records = this.records.filter(
             record => record?.isValid()
-            || selection.record && selection.record == record
+                || selection.record && selection.record == record
         );
     }
 }
