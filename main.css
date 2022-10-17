@@ -87,18 +87,22 @@ p {
     max-height: 25px;
 }
 
-.divHistory{
-  display: flex;
-  height: 145px;
-  max-width: 875px;
-  overflow-x: scroll;
-  background-color: #EEEEEE;
-  border: solid 2px;
+.pnlHistory{
   /* 2022-10-17: copied from https://stackoverflow.com/a/33158108/2336212 */
   position: fixed;
   bottom: 0px;
   left: 0px;
   z-index: 500;
+  background-color: #EEEEEE;
+  border: solid 2px;
+  padding-top: 5px;
+}
+
+.divHistory{
+  display: flex;
+  height: 145px;
+  max-width: 875px;
+  overflow-x: scroll;
 }
 
 .entryButton{

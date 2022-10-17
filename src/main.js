@@ -54,6 +54,12 @@ function txtSearchSymbolsChanged(){
 }
 
 //TODO: perhaps move this to another script?
+function txtSearchEntriesChanged(){
+    filterEntries($('txtSearchEntries').value);
+    updateEntryList();
+}
+
+//TODO: perhaps move this to another script?
 function txtTimeChanged(){
     entry.setWakeTime($('txtTimeWake').value);
     entry.setBedTime($('txtTimeBed').value);
