@@ -34,6 +34,28 @@ function createSymbolButtonString(symbol){
         </button>`;
 }
 
+function updateEntryList(){
+    let divHistory = $("divHistory");
+    let buttonString = entryList //searchResults.entries
+        .map(entry => createEntryButtonString(entry))
+        .join("");
+    divHistory.innerHTML = buttonString;
+}
+
+function createEntryButtonString(entry){
+    let entryDate = entry.date;
+    return ""+
+        `<button id="btnSymbol_${entryDate}" class="symbolButton"
+            title="${entryDate}"
+            onclick="
+                console.log('${entryDate} clicked');
+                btnEntryClicked('${entryDate}');
+            "
+        >
+            ${entryDate}
+        </button>`;
+}
+
 //TODO: perhaps move to a drawing script
 function repaintEntryCanvas(boxSet){
     //Defaults

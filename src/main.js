@@ -5,8 +5,8 @@ function initCalendarJournal(){
     window.onbeforeunload = cleanupCalendarJournal;
 
     initSymbolBank();
-    loadEntry();
-    entry ??= new Entry();
+    initEntryManager();
+    updateEntryList();
     //
     let cvsEntry = $("cvsEntry");
     cvsEntry.onclick = function(e){
