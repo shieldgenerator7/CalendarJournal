@@ -45,7 +45,7 @@ function updateEntryList(){
 function createEntryButtonString(entry){
     let entryDate = entry.date;
     return ""+
-        `<button id="btnSymbol_${entryDate}" class="symbolButton"
+        `<button id="btnSymbol_${entryDate}" class="entryButton"
             title="${entryDate}"
             onclick="
                 console.log('${entryDate} clicked');
