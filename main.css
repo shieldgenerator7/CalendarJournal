@@ -110,3 +110,8 @@ p {
     min-width: 115px;
     min-height: 115px;
 }
+
+.entryButton:hover{
+    border: 10px;
+    background-color: #93E4FF;
+}
