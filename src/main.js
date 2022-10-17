@@ -68,6 +68,15 @@ function btnSymbolClicked(symbol){
     repaintEntryCanvas();
 }
 
+//TODO: perhaps move this to another script?
+function btnEntryClicked(date){
+    // selection.symbolFunction?.(symbol);
+    entry = getEntry(date);
+    updateEntryFields(entry);
+    generateBoxSet(entry);
+    repaintEntryCanvas();
+}
+
 //TODO: perhaps remove this function and the HTML element that uses it
 function txtRecordChanged(){
     if (!selection.record){
