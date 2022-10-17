@@ -86,3 +86,21 @@ p {
 .btnImport{
     max-height: 25px;
 }
+
+.divHistory{
+  display: flex;
+  height: 145px;
+  max-width: 500px;
+  overflow-x: scroll;
+  background-color: #EEEEEE;
+}
+
+.entryButton{
+    border: 0px;
+    background-color: transparent;
+    border-radius: 10px;
+    margin: 5px;
+    width: 115px;
+    min-width: 115px;
+    min-height: 115px;
+}
