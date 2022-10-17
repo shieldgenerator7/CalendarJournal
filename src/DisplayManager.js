@@ -43,9 +43,10 @@ function updateEntryList(){
 }
 
 function createEntryButtonString(entry){
+    let inMap = (getEntry(entry.date) == entry);
     let entryDate = entry.date;
     return ""+
-        `<button id="btnSymbol_${entryDate}" class="entryButton"
+        `<button id="btnSymbol_${entryDate}" class="entryButton ${(inMap) ?"" :"invalid"}"
             title="${entryDate}"
             onclick="
                 console.log('${entryDate} clicked');

@@ -115,3 +115,7 @@ p {
     border: 10px;
     background-color: #93E4FF;
 }
+
+.invalid{
+    background-color: #FF9B9B;
+}
