@@ -117,12 +117,11 @@ function btnCopyClicked(){
     });
 }
 
-function btnClearClicked(){
-    if (confirm("Clear Entry?")){
-        entry = new Entry();
-        generateBoxSet(entry);
-        repaintEntryCanvas();
-    }
+function btnNewClicked(){
+    entry = createEntry();
+    generateBoxSet(entry);
+    repaintEntryCanvas();
+    updateEntryList();
 }
 
 function btnCopySymbolSetClicked(){
