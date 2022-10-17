@@ -6,6 +6,7 @@ function initCalendarJournal(){
 
     initSymbolBank();
     initEntryManager();
+    filterEntries();
     updateEntryList();
     //
     let cvsEntry = $("cvsEntry");

@@ -99,6 +99,15 @@ class Entry{
                 || selection.record && selection.record == record
         );
     }
+
+    containsText(text){
+        return this.date.includes(text)
+            // || this.wake.time
+            // || this.bed.time
+            || this.badges.some(b => b.includes(text))
+            || this.pleasures.some(p => p.includes(text))
+            || this.records.some(r => r.text.includes(text));
+    }
 }
 
 function getCurrentTimeString(){

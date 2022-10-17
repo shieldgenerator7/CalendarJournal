@@ -36,7 +36,7 @@ function createSymbolButtonString(symbol){
 
 function updateEntryList(){
     let divHistory = $("divHistory");
-    let buttonString = entryList //searchResults.entries
+    let buttonString = searchEntryResults.entries
         .map(entry => createEntryButtonString(entry))
         .join("");
     divHistory.innerHTML = buttonString;
