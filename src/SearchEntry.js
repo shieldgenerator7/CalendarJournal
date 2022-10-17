@@ -20,7 +20,7 @@ function filterEntries(query){
     //Save sanitized query
     searchEntryResults.query = query;
     //Search using query
-    searchEntryResults.entries = getEntriesWithText(queries);
+    searchEntryResults.entries = getEntriesWithText(...queries);
 }
 
 function getEntriesWithText(...texts){

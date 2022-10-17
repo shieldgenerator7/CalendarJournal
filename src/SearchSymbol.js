@@ -20,7 +20,7 @@ function filterSymbolNames(query){
     //Save sanitized query
     searchResults.query = query;
     //Search using query
-    searchResults.symbols = getSymbolsWithName(queries);
+    searchResults.symbols = getSymbolsWithName(...queries);
 }
 
 function getSymbolsWithName(...names){
