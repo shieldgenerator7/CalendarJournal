@@ -1,9 +1,5 @@
 "use strict";
 
-//TODO: move this to its own place (it doesnt belong here, i dont think)
-let entry;
-let entryList;
-
 function initCalendarJournal(){
 
     window.onbeforeunload = cleanupCalendarJournal;
@@ -48,24 +44,6 @@ function initCalendarJournal(){
 
 function cleanupCalendarJournal(){
     saveEntry();
-}
-
-function saveEntry(){
-    //save entries
-    if (!entryList.includes(entry)){
-        entryList.push(entry);
-    }
-    localStorage.setItem("CalendarJournal-entryList", JSON.stringify(entryList))
-}
-
-function loadEntry(){
-    //load entries
-    entryList = JSON.parse(localStorage.getItem("CalendarJournal-entryList")) ?? [];
-    entryList.forEach((e, i) => {
-        validateEntry(e);
-    });
-    //set entry
-    entry = entryList[entryList.length - 1];
 }
 
 //TODO: perhaps move this to another script?
