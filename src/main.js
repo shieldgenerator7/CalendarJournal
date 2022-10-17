@@ -51,7 +51,6 @@ function cleanupCalendarJournal(){
 }
 
 function saveEntry(){
-    localStorage.setItem("CalendarJournal-entry", JSON.stringify(entry));
     //save entries
     if (!entryList.includes(entry)){
         entryList.push(entry);
@@ -60,14 +59,13 @@ function saveEntry(){
 }
 
 function loadEntry(){
-    entry = JSON.parse(localStorage.getItem("CalendarJournal-entry")) ?? new Entry();
-    validateEntry(entry);
     //load entries
-    entryList = JSON.parse(localStorage.getItem("CalendarJournal-entryList")) ?? [entry];
+    entryList = JSON.parse(localStorage.getItem("CalendarJournal-entryList")) ?? [];
     entryList.forEach((e, i) => {
         validateEntry(e);
     });
-
+    //set entry
+    entry = entryList[entryList.length - 1];
 }
 
 //TODO: perhaps move this to another script?
