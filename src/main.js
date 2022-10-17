@@ -2,6 +2,7 @@
 
 //TODO: move this to its own place (it doesnt belong here, i dont think)
 let entry;
+let entryList;
 
 function initCalendarJournal(){
 
@@ -51,11 +52,22 @@ function cleanupCalendarJournal(){
 
 function saveEntry(){
     localStorage.setItem("CalendarJournal-entry", JSON.stringify(entry));
+    //save entries
+    if (!entryList.includes(entry)){
+        entryList.push(entry);
+    }
+    localStorage.setItem("CalendarJournal-entryList", JSON.stringify(entryList))
 }
 
 function loadEntry(){
     entry = JSON.parse(localStorage.getItem("CalendarJournal-entry")) ?? new Entry();
     validateEntry(entry);
+    //load entries
+    entryList = JSON.parse(localStorage.getItem("CalendarJournal-entryList")) ?? [entry];
+    entryList.forEach((e, i) => {
+        validateEntry(e);
+    });
+
 }
 
 //TODO: perhaps move this to another script?
