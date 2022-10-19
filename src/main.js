@@ -91,6 +91,7 @@ function btnEntryClicked(date){
     updateEntryFields(entry);
     generateBoxSet(entry);
     repaintEntryCanvas();
+    updateEntryList();
 }
 
 //TODO: perhaps remove this function and the HTML element that uses it

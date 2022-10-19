@@ -45,6 +45,9 @@ function updateEntryList(){
 function createEntryButtonString(entry){
     let inMap = (getEntry(entry.date) == entry);
     let entryDate = entry.date;
+    let badgeCount = entry.badges.length;
+    let pleasureCount = entry.pleasures.length;
+    let recordCount = entry.records.length;
     return ""+
         `<button id="btnSymbol_${entryDate}" class="entryButton ${(inMap) ?"" :"invalid"}"
             title="${entryDate}"
@@ -54,9 +57,9 @@ function createEntryButtonString(entry){
             "
         >
             <strong>${entryDate}</strong>
-            <br>${entry.badges.length} Badges
-            <br>${entry.pleasures.length} Pleasures
-            <br>${entry.records.length} Records
+            ${(badgeCount > 0) ?`<br>${badgeCount} Badges` :""}
+            ${(pleasureCount > 0) ?`<br>${pleasureCount} Pleasures` :""}
+            ${(recordCount > 0) ?`<br>${recordCount} Records` :""}
         </button>`;
 }
 
