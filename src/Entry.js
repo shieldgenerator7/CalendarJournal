@@ -101,12 +101,12 @@ class Entry{
     }
 
     containsText(text){
-        return this.date.includes(text)
+        return this.date.toLowerCase().includes(text)
             // || this.wake.time
             // || this.bed.time
-            || this.badges.some(b => b.includes(text))
-            || this.pleasures.some(p => p.includes(text))
-            || this.records.some(r => r.text.includes(text));
+            || this.badges.some(b => b.toLowerCase().includes(text))
+            || this.pleasures.some(p => p.toLowerCase().includes(text))
+            || this.records.some(r => r.text.toLowerCase().includes(text));
     }
 }
 
