@@ -53,7 +53,10 @@ function createEntryButtonString(entry){
                 btnEntryClicked('${entryDate}');
             "
         >
-            ${entryDate}
+            <strong>${entryDate}</strong>
+            <br>${entry.badges.length} Badges
+            <br>${entry.pleasures.length} Pleasures
+            <br>${entry.records.length} Records
         </button>`;
 }
 
