@@ -18,7 +18,7 @@ function saveEntry(){
     if (!entryList.includes(entry)){
         entryList.push(entry);
     }
-    localStorage.setItem("CalendarJournal-entryList", JSON.stringify(entryList))
+    localStorage.setItem("CalendarJournal-entryList", JSON.stringify(entryList));
 }
 
 function loadEntry(){

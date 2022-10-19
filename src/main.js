@@ -3,6 +3,15 @@
 function initCalendarJournal(){
 
     window.onbeforeunload = cleanupCalendarJournal;
+    //2022-10-19: onfocus onblur copied from https://stackoverflow.com/a/69509921/2336212
+    window.onfocus = function (ev) {
+        console.log("gained focus");
+    };
+
+    window.onblur = function (ev) {
+        console.log("lost focus");
+        saveEntry();
+    };
 
     initSymbolBank();
     initEntryManager();
