@@ -60,3 +60,34 @@ function updateEntryMap(){
 function getEntryJSONFilter(){
     return jsonStrEntry.concat(jsonStrRecord);
 }
+
+function uploadEntryList(file){
+    let reader = new FileReader();
+    reader.readAsText(file);
+    reader.onloadend = function() {
+        let json = reader.result;
+        importEntryList(json);
+    }
+}
+
+function importEntryList(json){
+    let entries = JSON.parse(json);
+    entries.forEach((e, i) => {
+        validateEntry(e);
+    });
+    addEntries(entries);
+}
+
+function addEntries(entries){
+    entryList = entryList.concat(entries);
+    sortEntryList();
+    updateEntryMap();
+    filterEntries(searchEntryResults.query);
+    updateEntryList();
+}
+
+function sortEntryList(){
+    entryList.sort(
+        (a, b) => a.date.localeCompare(b.date)
+    );
+}

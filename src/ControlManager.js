@@ -49,10 +49,19 @@ function handleFiles(files){
             uploadSymbol(file);
         }
         else if (symbolSetFileTypes.includes(file.type)){
-            uploadSymbolSet(file);
+            handleTextFile(file);
         }
         else{
             console.warning("Unknown file type:",file.type,"filename:",file.name);
         }
     });
+}
+
+function handleTextFile(file){
+    if (file.name.endsWith(".entry.json")){
+        uploadEntryList(file);
+    }
+    else{
+        uploadSymbolSet(file);
+    }
 }
