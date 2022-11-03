@@ -18,7 +18,7 @@ function saveEntry(){
     if (!entryList.includes(entry)){
         entryList.push(entry);
     }
-    localStorage.setItem("CalendarJournal-entryList", JSON.stringify(entryList));
+    localStorage.setItem("CalendarJournal-entryList", JSON.stringify(entryList, getEntryJSONFilter()));
 }
 
 function loadEntry(){
@@ -55,4 +55,8 @@ function updateEntryMap(){
         //Add entry to map
         entryMap[key] = e;
     });
+}
+
+function getEntryJSONFilter(){
+    return jsonStrEntry.concat(jsonStrRecord);
 }

@@ -3,6 +3,17 @@
 const BEFORE = 0;
 const AFTER = 1;
 
+const jsonStrEntry = [
+    "date",
+    "wake",
+    "bed",
+    "time",
+    "side",
+    "badges",
+    "pleasures",
+    "records",
+]
+
 class Entry{
     constructor(date){
         //2022-05-15: copied from https://stackoverflow.com/a/35922073/2336212
@@ -142,6 +153,7 @@ function validateEntry(entry){
     entry.records ??= [];
     entry.records.forEach((record, i) => {
         Object.setPrototypeOf(record, Record.prototype);
+        record.updateBody();
     });
 
 }
