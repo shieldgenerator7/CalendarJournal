@@ -69,6 +69,20 @@ function txtSearchEntriesChanged(){
 }
 
 //TODO: perhaps move this to another script?
+function btnDownloadEntriesClicked(){
+    //error checking
+    if (!(searchEntryResults?.entries?.length > 0)){
+        console.error("Can't download list with no entries!",searchEntryResults);
+    }
+    //processing
+    downloadJSON(
+        JSON.stringify(searchEntryResults.entries, getEntryJSONFilter()),
+        searchEntryResults.query,
+        "entry"
+    );
+}
+
+//TODO: perhaps move this to another script?
 function txtTimeChanged(){
     entry.setWakeTime($('txtTimeWake').value);
     entry.setBedTime($('txtTimeBed').value);
@@ -151,6 +165,31 @@ function btnCopySymbolSetClicked(){
 //TODO: move this to Utility script
 Math.clamp = function(amount, min, max){
     return Math.max(min, Math.min(amount, max));
+}
+
+//TODO: move this to Utility script
+//2022-11-03: copied from https://stackoverflow.com/a/34156339/2336212
+function download(content, fileName, contentType) {
+    var a = document.createElement("a");
+    var file = new Blob([content], {type: contentType});
+    a.href = URL.createObjectURL(file);
+    a.download = fileName;
+    a.click();
+}
+
+//TODO: move this to Utility script
+//extension: the special extension, .json will be added to the end of it
+function downloadJSON(json, filename, extension){
+    //defaults, error checking
+    if (!json){console.error("Invalid content!",json); return;}
+    filename = filename?.trim() || "CalendarJournal";
+    extension ??= "";
+    //
+    download(
+        json,
+        `${filename}${(extension) ?`.${extension}` :""}.json`,
+        'application/json'
+    )
 }
 
 
