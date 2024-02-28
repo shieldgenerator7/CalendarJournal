@@ -8,14 +8,6 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
-    "http-server": "^14.1.1",
-    "pkg": "^5.8.1"
-  },
-  "bin": "bin",
-  "pkg": {
-    "assets": [
-      "src/*",
-      "src/Assets/Json/*"
-    ]
+    "http-server": "^14.1.1"
   }
 }
