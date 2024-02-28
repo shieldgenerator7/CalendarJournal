@@ -11,5 +11,11 @@
     "http-server": "^14.1.1",
     "pkg": "^5.8.1"
   },
-  "bin": "bin"
+  "bin": "bin",
+  "pkg": {
+    "assets": [
+      "src/*",
+      "src/Assets/Json/*"
+    ]
+  }
 }
