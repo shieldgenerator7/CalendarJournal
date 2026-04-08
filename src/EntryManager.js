@@ -13,11 +13,13 @@ function initEntryManager(){
     updateEntryMap();
 }
 
-function saveEntry(){
-    //save entries
-    if (!entryList.includes(entry)){
+function saveEntry() {
+    //if current entry is not null and is not already in list,
+    if (!!entry && !entryList.includes(entry)) {
+        //put current entry in list
         entryList.push(entry);
     }
+    //save entries
     localStorage.setItem("CalendarJournal-entryList", JSON.stringify(entryList, getEntryJSONFilter()));
 }
 
